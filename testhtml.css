@@ -1,53 +1,60 @@
-.category_right_content {
-    padding-top: 15px;
+li {
+    list-style: none;
 }
-.category_right_content_item > div {
-	border: 2px solid #dddddd;
-    margin-bottom: 20px;
-    text-align: center;
+a {
+    text-decoration: none;
 }
-.category_right_content_item .lazyload {
-    width: 200px;
-}
-.category_right_content_item img {
-	width: 100%;
-}
-.category_right_content_item p {
-    font-family: Roboto-Bold;
-}
-
-.lazyload_item img {
-    transition: 0.5s;
-}
-.lazyload:hover img {
-    opacity: 0.7;
-}
-.lazyload:hover .popup_item {
-    display: block;
-}
-.popup {
-    position: relative;
-}
-.popup_item {
-    position: absolute;
-    display: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    top: 30%;
-}
-.popup_item li {
+.footer {
+    padding: 30px 0;
+    background-color: #000000;
     color: #ffffff;
-    font-size: 16px;
-    padding: 15px;
-    border-radius: 50%;
 }
-.popup_item a:nth-child(1) li {
-    background-color: #6dd3d1;
+.addr p i {
+    padding-right: 5px;
 }
-.popup_item a:hover li {
-    content: 'Mua hàng';
+.addr ul {
+    display: flex;
+    padding: 0;
 }
-.popup_item a:nth-child(2) li {
-    background-color: #fabc59;
+.addr li a {
+     width: 40px;
+     height: 40px;
+     background: #222;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-right: 10px;
+     text-decoration: none;
+     border-radius: 5px;
+     color: #fff    ;
+}
+.addr li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+.news .col-2 {
+    min-width: 60px;
+}
+.news_item {
+    padding-left: 20px;
+    align-items: center;
+    text-align: left;
+    display: flex;
+    padding-bottom: 15px;
+}
+.news_item div {
+    padding: 0;
+}
+.news_item img {
+    height: 45px;
+    width: 60px;
+}
+.news_item h5 {
+    font-size: 14px;
+}
+.news_info p {
+    margin: 0;
+}
+.news_info {
+    margin-left: 5px;
 }

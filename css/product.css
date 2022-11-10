@@ -305,8 +305,6 @@ h2 {
     background-color: #fabc59;
 }
 
-
-
 .pagination {
     font-family: Roboto-Bold;
     justify-content: center;
@@ -338,4 +336,70 @@ h2 {
     z-index: 0;
     background-color: #474747;
     border: 2px solid #474747;
+}
+/*---------- footer ----------*/
+.footer {
+    padding: 30px 0;
+    background-color: #000000;
+    color: #ffffff;
+}
+.footer a {
+    color: #dddddd;
+}
+.footer h4 {
+    font-family: Roboto-Bold;
+}
+.addr p i {
+    padding-right: 5px;
+}
+.addr ul {
+    display: flex;
+    padding: 0;
+}
+.addr li a {
+     width: 40px;
+     height: 40px;
+     background: #222;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-right: 10px;
+     text-decoration: none;
+     border-radius: 5px;
+     color: #fff;
+}
+.addr li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+.news .col-2 {
+    min-width: 60px;
+}
+.news_item {
+    padding-left: 20px;
+    align-items: center;
+    text-align: left;
+    display: flex;
+    padding-bottom: 15px;
+}
+.news_item div {
+    padding: 0;
+}
+.news_item img {
+    height: 45px;
+    width: 60px;
+}
+.news_info {
+    margin-left: 5px;
+    border-bottom: 1px solid #dddddd40;
+}
+.news_info p {
+    margin: 0;
+    font-size: 12px;
+}
+.news_item h5 {
+    font-size: 14px;
+}
+.news_info a:hover, .phone_num a:hover {
+    color: #e97777;
 }
