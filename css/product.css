@@ -176,7 +176,9 @@ h2 {
 .category_top_nav li:last-child {
     font-family: Roboto-Bold;
 }
-
+.category_top_nav li:hover {
+    font-family: Roboto-Bold;
+}
 .category_left_content {
     padding: 25px 0 25px 20px;
 }
@@ -197,6 +199,10 @@ h2 {
 }
 .category_left_menu.block ul {
 	display: block;
+}
+.category_left_menu li a:hover {
+    font-family: Roboto-Bold;
+    color: #e97777;
 }
 .hot_item {
     padding: 20px 0 10px 0;
