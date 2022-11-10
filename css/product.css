@@ -205,7 +205,7 @@ h2 {
     color: #e97777;
 }
 .hot_item {
-    padding: 20px 0 10px 0;
+    padding: 10px 0;
     border: 1px solid #dddddd;
     margin: 20px 0;
 }
@@ -233,7 +233,7 @@ h2 {
 .category_right_content_item h5 {
     padding-top:10px;   
 }
-.category_right_content_item h5 a {
+.category_right_content_item h5 a, .hot_item h5 a {
     display: block;
     font-size: 14px;
     overflow: hidden;
