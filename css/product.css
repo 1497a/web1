@@ -59,7 +59,7 @@ h2 {
     background: #000000;
 }
 /*---------- header ----------*/
-.header {
+/* .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,7 +139,7 @@ h2 {
 }
 .user li:hover .drop_user {
     visibility: visible;
-}
+} */
 
 /*---------- category ----------*/
 
@@ -165,7 +165,6 @@ h2 {
     left: 0;
     margin: 0;
 }
-
 .category_top_nav ul {
     padding-top: 80px;
 }
