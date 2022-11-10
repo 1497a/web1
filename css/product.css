@@ -230,6 +230,16 @@ h2 {
     margin-bottom: 20px;
     text-align: center;
 }
+.category_right_content_item h5 {
+    padding-top:10px;   
+}
+.category_right_content_item h5 a {
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .category_right_content_item img {
 	width: 100%;
 }
