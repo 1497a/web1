@@ -165,17 +165,17 @@ h2 {
     left: 0;
     margin: 0;
 }
-.category_top_nav ul {
+.top_nav ul {
     padding-top: 85px;
 }
-.category_top_nav li {
+.top_nav li {
     padding-right: 10px;
     font-size: 13px;
 }
-.category_top_nav li:last-child {
+.top_nav li:last-child {
     font-family: Roboto-Bold;
 }
-.category_top_nav li:hover {
+.top_nav li:hover {
     font-family: Roboto-Bold;
 }
 .category_left_content {
