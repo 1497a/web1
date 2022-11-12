@@ -7,7 +7,7 @@
 
 
 // ------------------------------- paging -------------------------------
-const product = [
+const  product = [
     { id: 1, image: "/img/category/Ban/cafe-tron-go-dep.png", title: "Bàn cafe tròn gỗ đẹp", price: "4.500.000"},
     { id: 2, image: "/img/category/Ban/GTY-091.png", title: "Bàn GTY 091", price: "3.500.000"},
     { id: 3, image: "/img/category/Ban/tron-kinh.png", title: "Bàn tròn kính", price: "23.000.000"},
@@ -148,24 +148,24 @@ pagePrev.addEventListener('click', () => {
 /*------------------------------- list tung san pham -------------------------------*/
 
 
-// function renderProduct_Ban() {
-//     html = '';
-//     const content = product.map((item, index) => {
-//         if(index >= 4 && index < 8) {
-//             html += '<div class="lazyload col-xs-12 col-sm-6 col-md-4 col-lg-4">';
-//             html += '<div class="lazyload_item popup category_right_content_item">'
-//             html += '<img src=' + item.image + '>';
-//             html += '<h5>' + '<a href="">' + item.title + '</a>' + '</h5>';
-//             html += '<p>' + item.price + '<u>đ</u></p>';
-//             html += '<ul class="popup_item">';
-//             html += '<a href="" title="Mua hàng"><li class="fas fa-cart-shopping"></li></a>';
-//             html += '<a href="" title="Chi tiết"><li class="fas fa-eye"></li></a>';
-//             html += '</ul>';
-//             html += '</div>';
-//             html += '</div>';
-//             return html;
-//         }
-//     })
-//     document.getElementById('product_ban').innerHTML = html;
-// }
-// renderProduct_Ban();
+function renderProduct_Ban() {
+    html = '';
+    const content = product.map((item, index) => {
+        if(index >= 4 && index < 8) {
+            html += '<div class="lazyload col-xs-12 col-sm-6 col-md-4 col-lg-4">';
+            html += '<div class="lazyload_item popup category_right_content_item">'
+            html += '<img src=' + item.image + '>';
+            html += '<h5>' + '<a href="">' + item.title + '</a>' + '</h5>';
+            html += '<p>' + item.price + '<u>đ</u></p>';
+            html += '<ul class="popup_item">';
+            html += '<a href="" title="Mua hàng"><li class="fas fa-cart-shopping"></li></a>';
+            html += '<a href="" title="Chi tiết"><li class="fas fa-eye"></li></a>';
+            html += '</ul>';
+            html += '</div>';
+            html += '</div>';
+            return html;
+        }
+    })
+    document.getElementById('product_ban').innerHTML = html;
+}
+renderProduct_Ban();
