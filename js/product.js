@@ -147,23 +147,23 @@ pagePrev.addEventListener('click', () => {
 /*------------------------------- list tung san pham -------------------------------*/
 
 
-function renderProduct_Ban() {
-    html = '';
-    const content = product.map((item, index) => {
-        if(index >= 1 && index < 4) {
-            html += '<div class="lazyload col-xs-12 col-sm-6 col-md-4 col-lg-4">';
-            html += '<div class="lazyload_item popup category_right_content_item">'
-            html += '<img src=' + item.image + '>';
-            html += '<h5>' + '<a href="' + item.link + '">' + item.title + '</a>' + '</h5>';
-            html += '<p>' + item.price + '<u>đ</u></p>';
-            html += '<ul class="popup_item">';
-            html += '<a href="" title="Mua hàng"><li class="fas fa-cart-shopping"></li></a>';
-            html += '<a href="' + item.link + '" title="Chi tiết"><li class="fas fa-eye"></li></a>';
-            html += '</ul>';
-            html += '</div>';
-            html += '</div>';
-        }
-    })
-    document.getElementById('product_ban').innerHTML = html;
-}
-renderProduct_Ban();
+// function renderProduct_Ban() {
+//     html = '';
+//     const content = product.map((item, index) => {
+//         if(index >= 1 && index < 4) {
+//             html += '<div class="lazyload col-xs-12 col-sm-6 col-md-4 col-lg-4">';
+//             html += '<div class="lazyload_item popup category_right_content_item">'
+//             html += '<img src=' + item.image + '>';
+//             html += '<h5>' + '<a href="' + item.link + '">' + item.title + '</a>' + '</h5>';
+//             html += '<p>' + item.price + '<u>đ</u></p>';
+//             html += '<ul class="popup_item">';
+//             html += '<a href="" title="Mua hàng"><li class="fas fa-cart-shopping"></li></a>';
+//             html += '<a href="' + item.link + '" title="Chi tiết"><li class="fas fa-eye"></li></a>';
+//             html += '</ul>';
+//             html += '</div>';
+//             html += '</div>';
+//         }
+//     })
+//     document.getElementById('product_ban').innerHTML = html;
+// }
+// renderProduct_Ban();

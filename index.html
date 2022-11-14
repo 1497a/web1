@@ -4,6 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Filter And Search</title>
     <!-- Google Font -->
+    <link rel="stylesheet" href="/fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font_Roboto/Roboto-Bold.ttf">
+    <link rel="stylesheet" href="/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <script src="/js/jquery.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
       rel="stylesheet"
@@ -12,15 +18,101 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <div id="search-container">
-        <input
-          type="search"
-          id="search-input"
-          placeholder="Search product name here.."
-        />
-        <button id="search">Search</button>
+    <section class="category">
+      <div class="top_nav">
+          <ul class="line_up">
+              <li><a href="/kien____home/index.html">Trang chủ</a></li>
+              <li><i class="fas fa-chevron-right"></i></li>
+              <li>Tất cả sản phẩm</li>
+          </ul>
+          <hr>
       </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3 category_left">    
+                  <div class="row">
+                      <div class="col-lg-12 category_top">
+                          <div class="title_module_main">
+                              <h2>DANH MỤC</h2>
+                          </div>
+                      </div>
+  
+                      <!-- <div class="category_left_content">
+                        <div id="search-container">
+                          <input
+                            type="search"
+                            id="search-input"
+                            placeholder="Search product name here.."
+                          />
+                          <button id="search">Search</button>
+                        </div> -->
+                          <ul>
+                              <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Trang chủ</a></li>
+                              <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Giới thiệu</a></li>
+                              <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="#">Sản phẩm<i class="fas fa-chevron-down"></i></a>
+                                  <ul class="list_item">
+                                      <li class="single_list" onclick="filterProduct('all')">Tất cả sản phẩm</li>
+                                      <li class="single_list" onclick="filterProduct('ban')">Bàn</li>
+                                      <li class="single_list" onclick="filterProduct('ke_sach')">Kệ sách</li>
+                                      <li class="single_list" onclick="filterProduct('rem_cua')">Rèm cửa</li>
+                                      <li class="single_list" onclick="filterProduct('ghe_sofa')">Ghế sofa</li>
+                                      <li class="single_list" onclick="filterProduct('phong_tam')">Phòng tắm</li>
+                                      <li class="single_list" onclick="filterProduct('tu_quan_ao')">Tủ quần áo</li>
+                                      <li class="single_list" onclick="filterProduct('giuong_ngu')">Giường ngủ</li>
+                                      <li class="single_list" onclick="filterProduct('den_trang_tri')">Đèn trang trí</li>
+                                      <!-- <li><a href="/html/category/product_noi_bat.html">Sản phẩm nổi bật</a></li>
+                                      <li><a href="/html/category/product_khuyen_mai.html">Sản phẩm khuyến mãi</a></li> -->
+                                  </ul>
+                              </li>
+                              <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Tin tức</a></li>
+                              <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Liên hệ</a></li>
+                          </ul>
+                          <script>
+                              const itemsliderbar = document.querySelectorAll(".category_left_menu")
+                              itemsliderbar.forEach(function(menu,index){
+                                  menu.addEventListener("click",function(){
+                                      menu.classList.toggle("block")
+                                  })
+                              })
+                          </script>
+                      </div>
+                      
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 category_right">
+                        <div class="row category_top">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="category_title col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="title_module_main">
+                                        <h2>TẤT CẢ SẢN PHẨM</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-8 col-md-8 col-lg-8">
+                                <div class="row">
+                                    <div class="category_right_top col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <button><span>Bộ lọc</span><i class="fas fa-chevron-down"></i></button>
+                                    </div>
+                                    <div class="category_right_top col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <select name="" id="">
+                                            <option value="">Sắp xếp</option>
+                                            <option value="">Giá cao đến thấp</option>
+                                            <option value="">Giá thấp đến cao</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category_right_content row" id="products"></div>
+                      </div>
+                  </div>
+                  
+              </div>
+
+              
+      </div>
+    </section>
+    <!-- <div class="wrapper">
+      
       <div id="buttons">
         <button class="button-value" onclick="filterProduct('all')">All</button>
         <button class="button-value" onclick="filterProduct('Topwear')">
@@ -36,8 +128,7 @@
           Watch
         </button>
       </div>
-      <div id="products"></div>
-    </div>
+    </div> -->
     <!-- Script -->
     <script src="script.js"></script>
   </body>
