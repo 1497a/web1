@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,65 +13,67 @@
     <script src="/js/jquery.min.js"></script>
     <title>Tất cả sản phẩm</title>
 </head>
-<body>
-  <section class="category">
-    <div class="top_nav">
-        <ul class="line_up">
-            <li><a href="/kien____home/index.html">Trang chủ</a></li>
-            <li><i class="fas fa-chevron-right"></i></li>
-            <li>Tất cả sản phẩm</li>
-        </ul>
-        <hr>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 category_left">    
-                <div class="row">
-                    <div class="col-lg-12 category_top">
-                        <div class="title_module_main">
-                            <h2>DANH MỤC</h2>
-                        </div>
-                    </div>
 
-                    <div class="category_left_content">
-                        <ul>
-                            <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Trang chủ</a></li>
-                            <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Giới thiệu</a></li>
-                            <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="#">Sản phẩm<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="/html/category/product_ban.html">Bàn gỗ</a></li>
-                                    <li><a href="/html/category/product_ke_sach.html">Kệ sách</a></li>
-                                    <li><a href="/html/category/product_rem_cua.html">Rèm cửa</a></li>
-                                    <li><a href="/html/category/product_sofa.html">Ghế sofa</a></li>
-                                    <li><a href="/html/category/product_phong_tam.html">Phòng tắm</a></li>
-                                    <li><a href="/html/category/product_tu_quan_ao.html">Tủ quần áo</a></li>
-                                    <li><a href="/html/category/product_giuong_ngu.html">Giường ngủ</a></li>
-                                    <li><a href="/html/category/product_den_trang_tri.html">Đèn trang trí</a></li>
-                                    <!-- <li><a href="/html/category/product_noi_bat.html">Sản phẩm nổi bật</a></li>
+<body>
+    <section class="category">
+        <div class="top_nav">
+            <ul class="line_up">
+                <li><a href="./kien____home/index.html">Trang chủ</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Tất cả sản phẩm</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 category_left">
+                    <div class="row">
+                        <div class="col-lg-12 category_top">
+                            <div class="title_module_main">
+                                <h2>DANH MỤC</h2>
+                            </div>
+                        </div>
+
+                        <div class="category_left_content">
+                            <ul>
+                                <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Trang chủ</a></li>
+                                <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Giới thiệu</a></li>
+                                <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="#">Sản phẩm<i class="fas fa-chevron-down"></i></a>
+                                    <ul>
+                                        <li><a href="/html/category/product_ban.html">Bàn gỗ</a></li>
+                                        <li><a href="/html/category/product_ke_sach.html">Kệ sách</a></li>
+                                        <li><a href="/html/category/product_rem_cua.html">Rèm cửa</a></li>
+                                        <li><a href="/html/category/product_sofa.html">Ghế sofa</a></li>
+                                        <li><a href="/html/category/product_phong_tam.html">Phòng tắm</a></li>
+                                        <li><a href="/html/category/product_tu_quan_ao.html">Tủ quần áo</a></li>
+                                        <li><a href="/html/category/product_giuong_ngu.html">Giường ngủ</a></li>
+                                        <li><a href="/html/category/product_den_trang_tri.html">Đèn trang trí</a></li>
+                                        <!-- <li><a href="/html/category/product_noi_bat.html">Sản phẩm nổi bật</a></li>
                                     <li><a href="/html/category/product_khuyen_mai.html">Sản phẩm khuyến mãi</a></li> -->
-                                </ul>
-                            </li>
-                            <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Tin tức</a></li>
-                            <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Liên hệ</a></li>
-                        </ul>
-                        <script>
-                            const itemsliderbar = document.querySelectorAll(".category_left_menu")
-                            itemsliderbar.forEach(function(menu,index){
-                                menu.addEventListener("click",function(){
-                                    menu.classList.toggle("block")
+                                    </ul>
+                                </li>
+                                <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Tin tức</a></li>
+                                <li class="category_left_menu"><i class="fas fa-chevron-right"></i><a href="">Liên hệ</a></li>
+                            </ul>
+                            <script>
+                                const itemsliderbar = document.querySelectorAll(".category_left_menu")
+                                itemsliderbar.forEach(function(menu, index) {
+                                    menu.addEventListener("click", function() {
+                                        menu.classList.toggle("block")
+                                    })
                                 })
-                            })
-                        </script>
-                    </div>
-                    
+                            </script>
+                        </div>
+
                     </div>
                 </div>
             </div>
-    </div>
-  </section>
+        </div>
+    </section>
 
 
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
