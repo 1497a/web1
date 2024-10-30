@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="../../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../font_Roboto/Roboto-Bold.ttf">
+    <link rel="stylesheet" href="../../../css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../../css/product.css">
+    <script src="../../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <script src="../../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../style.js"></script>
+    <link rel="stylesheet" href="../../../css/cart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../../css/orderDetail.css">
+
+    <title>Quản lý đơn hàng</title>
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <div class="tab_menu">
+                <i class="fas fa-bars" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></i>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 250px;">
+                    <div class="sidebar">
+                        <div class="close_tab">
+                            <i class="fas fa-xmark" data-bs-dismiss="offcanvas"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user_avatar">
+                                <i class="fa-solid fa-user fa-2x"></i>
+                            </div>
+                            <div>
+                                <div class="user_name">
+                                    <b>Admin</b>
+                                </div>
+                                <div class="user_designation">
+                                    <p>Chào mừng bạn trở lại</p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="menu">
+                            <a href="../../html/admin/admin.html">
+                                <li class="menu_item"><i class="fas fa-house"></i>Trang chủ</li>
+                            </a>
+                            <a href="../../html/admin/data_product.html">
+                                <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                            </a>
+                            <a href="../../html/admin/data_oder.html">
+                                <li class="menu_item active"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                            </a>
+                            <a href="../../html/admin/data_user.html">
+                                <li class="menu_item"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sign_out">
+                <a href="../../html/Dangnhap.html" onclick="logout()"><i class="fas fa-right-from-bracket"></i></a> </div>
+        </div>
+        <div class="sidebar">
+            <div class="user">
+                <div class="user_avatar">
+                    <i class="fa-solid fa-user fa-2x"></i>
+                </div>
+                <div>
+                    <div class="user_name">
+                        <b>Admin</b>
+                    </div>
+                    <div class="user_designation">
+                        <p>Chào mừng bạn trở lại</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="menu">
+                <a href="../../html/admin/admin.html">
+                    <li class="menu_item"><i class="fas fa-house"></i>Trang chủ</li>
+                </a>
+                <a href="../../html/admin/data_product.html">
+                    <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                </a>
+                <a href="../../html/admin/data_oder.html">
+                    <li class="menu_item active"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                </a>
+                <a href="../../html/admin/data_user.html">
+                    <li class="menu_item"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="row">
+            <div class="title col-12 box_shadow">
+                <b>Quản lý đơn hàng</b>
+            </div>
+        </div>
+        <div class="row main_frame box_card box_shadow">
+            <!-- <div class="element_btn">
+                <div>
+                    <a href="" class="addnew"><i class="fas fa-plus"></i>tạo mới sản phẩm</a>
+                </div>
+            </div> -->
+            <!-- <div class="tab">
+                <select class="form-select">
+                    <option class="tab_item" id="a" onclick="changeTime('past1M', this)" selected>1 tháng vừa qua</option>
+                    <option class="tab_item" id="b" onclick="changeTime('past3M', this)">3 tháng vừa qua</option>
+                    <option class="tab_item" id="c" onclick="changeTime('past1Y', this)">1 năm vừa qua</option>
+                </select>
+            </div> -->
+            <ul class="tab">
+                <li class="tab_item active_tab" onclick="changeTime('past1M', this)">1 tháng vừa qua</li>
+                <li class="tab_item" onclick="changeTime('past3M', this)">3 tháng vừa qua</li>
+                <li class="tab_item" onclick="changeTime('past1Y', this)">1 năm vừa qua</li>
+            </ul>
+            <div class="table-responsive-lg">
+                <table class="table table-bordered" id="past1M">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col"></th>
+                            <th scope="col">ID đơn hàng</th>
+                            <th scope="col">Khách hàng</th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>SD3242</td>
+                            <td>Quán Thiếu Anh</td>
+                            <td>Bàn gỗ dài, Kệ sách gỗ 4 tầng 40</td>
+                            <td>6, Hòa Khánh, Phường Hòa Khánh</td>
+                            <td>717-437-8833</td>
+                            <td>2</td>
+                            <td>2.400.000</td>
+                            <td>Chờ thanh toán</td>
+                            <td>
+                                <button id="detailButton" class="btn btn-primary btn-sm" type="button" title="Xem chi tiết">Xem chi tiết</button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>YT9812</td>
+                            <td>Vưu Hữu Khôi</td>
+                            <td>Rèm cửa 01, Rèm cửa 02, Rèm cửa 03, Rèm cửa 04</td>
+                            <td>37 Đoàn Kết, Phường Tân Sơn Nhĩ</td>
+                            <td>703-472-4602</td>
+                            <td>4</td>
+                            <td>3.490.000</td>
+                            <td>Đang giao hàng</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="past3M">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col"></th>
+                            <th scope="col">ID đơn hàng</th>
+                            <th scope="col">Khách hàng</th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>SD3242</td>
+                            <td>Quán Thiếu Anh</td>
+                            <td>Bàn gỗ dài, Kệ sách gỗ 4 tầng 40</td>
+                            <td>6, Hòa Khánh, Phường Hòa Khánh</td>
+                            <td>717-437-8833</td>
+                            <td>2</td>
+                            <td>2.400.000</td>
+                            <td>Chờ thanh toán</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>YT9812</td>
+                            <td>Vưu Hữu Khôi</td>
+                            <td>Rèm cửa 01, Rèm cửa 02, Rèm cửa 03, Rèm cửa 04</td>
+                            <td>37 Đoàn Kết, Phường Tân Sơn Nhĩ</td>
+                            <td>703-472-4602</td>
+                            <td>4</td>
+                            <td>3.490.000</td>
+                            <td>Đang giao hàng</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>MD0837</td>
+                            <td>Bạc Xuân Hiếu</td>
+                            <td>Giường ngủ FURNILAND - Jangin Christine (1m8)</td>
+                            <td>27/785, Đường Trương Định</td>
+                            <td>573-355-7157</td>
+                            <td>1</td>
+                            <td>12.000.000</td>
+                            <td>Đã hủy</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="past1Y">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col"></th>
+                            <th scope="col">ID đơn hàng</th>
+                            <th scope="col">Khách hàng</th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>MD0837</td>
+                            <td>Triệu Thanh Phú</td>
+                            <td>Đèn trang trí vách cao cấp NETVIET NV 8825, Thanh sắt treo khăn</td>
+                            <td>191 Bà Triệu, Phường Lê Đại Hành</td>
+                            <td>912-336-9598</td>
+                            <td>2</td>
+                            <td>889.000</td>
+                            <td>Hoàn thành</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>SD3242</td>
+                            <td>Quán Thiếu Anh</td>
+                            <td>Bàn gỗ dài, Kệ sách gỗ 4 tầng 40</td>
+                            <td>6, Hòa Khánh, Phường Hòa Khánh</td>
+                            <td>717-437-8833</td>
+                            <td>2</td>
+                            <td>2.400.000</td>
+                            <td>Chờ thanh toán</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>YT9812</td>
+                            <td>Vưu Hữu Khôi</td>
+                            <td>Rèm cửa 01, Rèm cửa 02, Rèm cửa 03, Rèm cửa 04</td>
+                            <td>37 Đoàn Kết, Phường Tân Sơn Nhĩ</td>
+                            <td>703-472-4602</td>
+                            <td>4</td>
+                            <td>3.490.000</td>
+                            <td>Đang giao hàng</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                            <td>MD0837</td>
+                            <td>Bạc Xuân Hiếu</td>
+                            <td>Giường ngủ FURNILAND - Jangin Christine (1m8)</td>
+                            <td>27/785, Đường Trương Định</td>
+                            <td>573-355-7157</td>
+                            <td>1</td>
+                            <td>12.000.000</td>
+                            <td>Đã hủy</td>
+                            <td>
+                                <button id="detailButton" class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button>
+                                <!-- <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></button> -->
+                                <!-- <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <div class="category_paging">
+                <ul class="pagination">
+                    <li class="page-item page_btn_prev"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+                    <div class="pagination number_page" id="number_page"> -->
+            <!-- <li class="active"><a class="page-link">1</a></li>
+                        <li><a class="page-link">2</a></li>
+                        <li><a class="page-link">3</a></li>-->
+            <!-- </div>
+                    <li class="page-item page_btn_next"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                  </ul>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="overlay" id="orderOverlay" style="display: none;">
+        <div class="order-detail-form">
+            <h3 id="titleDetail">CHI TIẾT ĐƠN HÀNG</h2>
+
+            <!-- Thông tin người dùng -->
+            <div class="form-group">
+                <label for="name">Họ Tên:</label>
+                <input type="text" id="name" value="Mai Đức Kiên" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="konlien@gmail.com" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Số Điện Thoại:</label>
+                <input type="tel" id="phone" value="0973366791" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Tình Trạng:</label>
+                <select id="status">
+                    <option value="da_dat">Đơn hàng đã đặt</option>
+                    <option value="da_xac_nhan">Đã xác nhận</option>
+                    <option value="dang_van_chuyen">Đang vận chuyển</option>
+                    <option value="da_nhan_hang">Đã nhận hàng</option>
+                    <option value="da_hoan_thanh">Đã hoàn thành</option>
+                    <option value="da_huy">Đã hủy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Hình Thức Thanh Toán:</label>
+                <input type="text" id="payment" value="COD" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Địa Chỉ:</label>
+                <input type="text" id="address" value="98/50 Bình Trị Đông" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="district">Quận/Huyện:</label>
+                <input type="text" id="district" value="Quận Bình Tân" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="province">Tỉnh/Thành:</label>
+                <input type="text" id="province" value="TP.Hồ Chí Minh" disabled>
+            </div>
+
+            <!-- Danh sách sản phẩm -->
+            <h3>Sản Phẩm Đơn Hàng</h3>
+            <table class="order-products-table">
+                <thead>
+                    <tr>
+                        <th>Hình Ảnh</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Số Lượng</th>
+                        <th>Thành Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="https://product.hstatic.net/200000065946/product/pro_mau_tu_nhien_noi_that_moho_tu_quan_ao_vienna_3_canh_1_db9b7d67a0de4cbf9ee0a67a0b0c4777_large.jpg" alt="Product Image" class="product-image"></td>
+                        <td>Sản Phẩm AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</td>
+                        <td>2</td>
+                        <td>200,000 VND</td>
+                    </tr>
+                    <!-- Thêm các sản phẩm khác nếu cần -->
+                </tbody>
+            </table>
+
+            <div class="order-summary">
+                <div class="summary-row">
+                    <span>Tổng tiền hàng:</span>
+                    <span>350,000 VND</span>
+                </div>
+                <div class="summary-row">
+                    <span>Phí vận chuyển:</span>
+                    <span>20,000 VND</span>
+                </div>
+                <div class="summary-row">
+                    <span><strong>Tổng tiền:</strong></span>
+                    <span><strong>370,000 VND</strong></span>
+                </div>
+            </div>
+
+            <!-- Nút đóng form -->
+             <div class="buttonDetail">
+                <button id="saveButton">Cập nhật</button>
+                <button id="closeButton">Đóng</button>
+             </div>
+        </div>
+    </div>
+
+
+
+    <!-- ----------------------- Script ----------------------- -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/account.js"></script>
+    <script src="../../js/orderDetail.js"></script>
+
+    <script>
+        jQuery(function() {
+            jQuery(".trash").click(function() {
+                swal({
+                        title: "Cảnh báo",
+                        text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
+                        buttons: ["Hủy bỏ", "Đồng ý"],
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Đã xóa thành công!", {
+
+                            });
+                        }
+                    });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

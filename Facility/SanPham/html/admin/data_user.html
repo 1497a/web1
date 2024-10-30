@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../fontawesome-free-6.2.0-web/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../../font_Roboto/Roboto-Bold.ttf">
+    <link rel="stylesheet" href="../../../css/themify-icons/themify-icons.css">
+    <script src="../../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <title>Quản lý người dùng</title>
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <div class="tab_menu">
+                <i class="fas fa-bars" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></i>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 250px;">
+                    <div class="sidebar">
+                        <div class="close_tab">
+                            <i class="fas fa-xmark" data-bs-dismiss="offcanvas"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user_avatar">
+                                <i class="fa-solid fa-user fa-2x"></i>
+                            </div>
+                            <div>
+                                <div class="user_name">
+                                    <b>Admin</b>
+                                </div>
+                                <div class="user_designation">
+                                    <p>Chào mừng bạn trở lại</p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="menu">
+                            <a href="../../html/admin/admin.html">
+                                <li class="menu_item"><i class="fas fa-house"></i>Trang chủ</li>
+                            </a>
+                            <a href="../../html/admin/data_product.html">
+                                <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                            </a>
+                            <a href="../../html/admin/data_oder.html">
+                                <li class="menu_item"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                            </a>
+                            <a href="../../html/admin/data_user.html">
+                                <li class="menu_item active"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sign_out">
+                <a href="../../html/Dangnhap.html" onclick="logout()"><i class="fas fa-right-from-bracket"></i></a> </div>
+        </div>
+        <div class="sidebar">
+            <div class="user">
+                <div class="user_avatar">
+                    <i class="fa-solid fa-user fa-2x"></i>
+                </div>
+                <div>
+                    <div class="user_name">
+                        <b>Admin</b>
+                    </div>
+                    <div class="user_designation">
+                        <p>Chào mừng bạn trở lại</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="menu">
+                <a href="../../html/admin/admin.html">
+                    <li class="menu_item"><i class="fas fa-house"></i>Trang chủ</li>
+                </a>
+                <a href="../../html/admin/data_product.html">
+                    <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                </a>
+                <a href="../../html/admin/data_oder.html">
+                    <li class="menu_item"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                </a>
+                <a href="../../html/admin/data_user.html">
+                    <li class="menu_item active"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="row">
+            <div class="title col-12 box_shadow">
+                <b>Quản lý người dùng</b>
+            </div>
+        </div>
+        <div class="row main_frame box_card box_shadow">
+            <div class="table-responsive-lg">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">Tên</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Mật khẩu</th>
+                            <th scope="col">Khóa/ Mở khóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTable">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="category_paging">
+                <ul class="pagination">
+                    <li class="page-item page_btn_prev"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+                    <div class="pagination number_page" id="number_page"> -->
+            <!-- <li class="active"><a class="page-link">1</a></li>
+                        <li><a class="page-link">2</a></li>
+                        <li><a class="page-link">3</a></li>-->
+            <!-- </div>
+                    <li class="page-item page_btn_next"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                  </ul>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- ----------------------- Script ----------------------- -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="../../bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/product_order.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/account.js"></script>
+    <script src="../../js/userAccount.js"></script>
+
+</body>
+
+</html>

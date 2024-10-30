@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="../../bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../font_Roboto/Roboto-Bold.ttf">
+    <link rel="stylesheet" href="../../../css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../../css/product.css">
+    <script src="../../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <script src="../../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../style.js"></script>
+    <link rel="stylesheet" href="../../../css/cart.css">
+    <title>Admin</title>
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <div class="tab_menu">
+                <i class="fas fa-bars" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></i>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 250px;">
+                    <div class="sidebar">
+                        <div class="close_tab">
+                            <i class="fas fa-xmark" data-bs-dismiss="offcanvas"></i>
+                        </div>
+                        <div class="user">
+                            <div class="user_avatar">
+                                <i class="fa-solid fa-user fa-2x"></i>
+                            </div>
+                            <div>
+                                <div class="user_name">
+                                    <b>Admin</b>
+                                </div>
+                                <div class="user_designation">
+                                    <p>Chào mừng bạn trở lại</p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="menu">
+                            <a href="./admin.html">
+                                <li class="menu_item active"><i class="fas fa-house"></i>Trang chủ</li>
+                            </a>
+                            <a href="./data_product.html">
+                                <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                            </a>
+                            <a href="./data_oder.html">
+                                <li class="menu_item"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                            </a>
+                            <a href="./data_user.html">
+                                <li class="menu_item"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sign_out">
+                <a href="../../html/Dangnhap.html" onclick="logout()"><i class="fas fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="user">
+                <div class="user_avatar">
+                    <i class="fa-solid fa-user fa-2x"></i>
+                </div>
+                <div>
+                    <div class="user_name">
+                        <b>Admin</b>
+                    </div>
+                    <div class="user_designation">
+                        <p>Chào mừng bạn trở lại</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="menu">
+                <a href="./admin.html">
+                    <li class="menu_item active"><i class="fas fa-house"></i>Trang chủ</li>
+                </a>
+                <a href="./data_product.html">
+                    <li class="menu_item"><i class="fas fa-tag"></i>Quản lý sản phẩm</li>
+                </a>
+                <a href="./data_oder.html">
+                    <li class="menu_item"><i class="fas fa-bag-shopping"></i>Quản lý đơn hàng</li>
+                </a>
+                <a href="./data_user.html">
+                    <li class="menu_item"><i class="fas fa-address-card"></i>Quản lý người dùng</li>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="row">
+            <div class="title col-12 box_shadow">
+                <b>Trang chủ</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="box_card box_shadow mb-3">
+                            <div class="card-header">TỔNG KHÁCH HÀNG</div>
+                            <div class="card-body">
+                                <h5 class="card-title">537 khách hàng</h5>
+                                <p class="card-text">Tổng số khách hàng được quản lý.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box_card box_shadow mb-3">
+                            <div class="card-header">TỔNG SẢN PHẨM</div>
+                            <div class="card-body">
+                                <h5 class="card-title">1850 sản phẩm</h5>
+                                <p class="card-text">Tổng số sản phẩm được quản lý.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box_card box_shadow mb-3">
+                            <div class="card-header">TỔNG ĐƠN HÀNG</div>
+                            <div class="card-body">
+                                <h5 class="card-title">247 đơn hàng</h5>
+                                <p class="card-text">Tổng số hóa đơn bán hàng trong tháng.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box_card box_shadow mb-3">
+                            <div class="card-header">SẮP HẾT HÀNG</div>
+                            <div class="card-body">
+                                <h5 class="card-title">0 sản phẩm</h5>
+                                <p class="card-text">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row main_frame box_card box_shadow">
+            <div class="top_title_table">
+                <h4>SẢN PHẨM BÁN CHẠY</h4>
+                <hr>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">Mã sản phẩm</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Giá tiền</th>
+                            <th scope="col">Danh mục</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ban4</td>
+                            <td>Bàn gỗ dài</td>
+                            <td>1.890.000</td>
+                            <td>Bàn gỗ</td>
+                        </tr>
+                        <tr>
+                            <td>den2</td>
+                            <td>Đèn trang trí vách cao cấp pha lê Netviet NV 9005/2</td>
+                            <td>970.000</td>
+                            <td>Đèn trang trí</td>
+                        </tr>
+                        <tr>
+                            <td>giuong2</td>
+                            <td>Giường ngủ FURNILAND - Jangin Haim (1.8m)</td>
+                            <td>5.400.000</td>
+                            <td>Giường ngủ</td>
+                        </tr>
+                        <tr>
+                            <td>phongtam1</td>
+                            <td>Thanh treo giấy vệ sinh</td>
+                            <td>150.000</td>
+                            <td>Phòng tắm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row main_frame box_card box_shadow">
+            <div class="top_title_table">
+                <h4>TỔNG ĐƠN HÀNG</h4>
+                <hr>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">ID đơn hàng</th>
+                            <th scope="col">Khách hàng</th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MD0837</td>
+                            <td>Triệu Thanh Phú</td>
+                            <td>Đèn trang trí vách cao cấp NETVIET NV 8825, Thanh sắt treo khăn</td>
+                            <td>2</td>
+                            <td>889.000 <u>đ</u></td>
+                        </tr>
+                        <tr>
+                            <td>SD3242</td>
+                            <td>Quán Thiếu Anh</td>
+                            <td>Bàn gỗ dài, Kệ sách gỗ 4 tầng 40</td>
+                            <td>2</td>
+                            <td>2.400.000 <u>đ</u></td>
+                        </tr>
+                        <tr>
+                            <td>YT9812</td>
+                            <td>Vưu Hữu Khôi</td>
+                            <td>Rèm cửa 01, Rèm cửa 02, Rèm cửa 03, Rèm cửa 04</td>
+                            <td>4</td>
+                            <td>3.490.000 <u>đ</u></td>
+                        </tr>
+                        <tr>
+                            <td>MD0837</td>
+                            <td>Bạc Xuân Hiếu</td>
+                            <td>Giường ngủ FURNILAND - Jangin Christine (1m8)</td>
+                            <td>1</td>
+                            <td>12.000.000 <u>đ</u></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><b>Tổng cộng:</b></td>
+                            <td><b>18.779.000 <u>đ</u></b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row main_frame box_card box_shadow">
+            <div class="top_title_table">
+                <h4>SẢN PHẨM ĐÃ HẾT</h4>
+                <hr>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">Mã sản phẩm</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Giá tiền</th>
+                            <th scope="col">Danh mục</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- ----------------------- Script ----------------------- -->
+    <script src="../../bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/account.js"></script>
+
+</body>
+
+</html>
