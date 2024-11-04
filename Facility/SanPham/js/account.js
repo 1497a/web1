@@ -4,6 +4,13 @@ let accountusers = [{
     diachi: "Ly thai to- quan 5",
     name: "admin",
     password: "123456",
+},
+{
+    email: "use32r@gmail.com",
+    sdt: "0984253741",
+    diachi: "Ly thai to- quan 5",
+    name: "admin3434",
+    password: "123456",
 }
 ]
 var account = localStorage.getItem('accountusers');
@@ -187,6 +194,7 @@ function checkSignIn() {
                 if (password === item.password) {
                     localStorage.setItem('issignin', 1);
                     localStorage.setItem('email', item.email);
+                    localStorage.setItem('username', item.name);
                     localStorage.setItem('password', item.password);
                     document.getElementById('signIn').action = "../../Index.html";
                     this.submit();
@@ -219,6 +227,7 @@ function getBasePath() {
 // Sử dụng getBasePath() để tạo các href động
 function afterSignIn() {
     var signin = localStorage.getItem('issignin');
+    var username = localStorage.getItem('username') ?? 'error';
     let headeruser = document.querySelector(".icon-user");
     
     if (signin == 1) {
@@ -241,6 +250,7 @@ function afterSignIn() {
                 </ul>
             </li>
         `;
+        headeruser.querySelector('li > a').innerText = username;
     }
 }
 afterSignIn();
