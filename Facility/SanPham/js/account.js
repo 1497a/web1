@@ -1,15 +1,15 @@
 let accountusers = [{
-    email: "user@gmail.com",
+    email: "user1@gmail.com",
     sdt: "0984253741",
     diachi: "Ly thai to- quan 5",
-    name: "admin",
+    name: "user1",
     password: "123456",
 },
 {
-    email: "use32r@gmail.com",
+    email: "user2@gmail.com",
     sdt: "0984253741",
     diachi: "Ly thai to- quan 5",
-    name: "admin3434",
+    name: "user2",
     password: "123456",
 }
 ]

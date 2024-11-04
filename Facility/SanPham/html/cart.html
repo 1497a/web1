@@ -149,13 +149,66 @@
 
                 </div>
                 <div class="checkout">
-                    <a href="../../SanPham/html/checkout.html">
-                        <button class=" btn btn-primary ">Bắt Đầu Thanh Toán</button>
+                    <a href="../../SanPham/html/checkout.html" id="checkout-link">
+                        <button class="btn btn-primary" id="checkout-button">Bắt Đầu Thanh Toán</button>
                     </a>
                 </div>
                 <div>
                     <a href="../../SanPham/html/category/product.html" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Tiếp tục mua</a>
                 </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        // Check the sign-in status from local storage
+                        let checkSignInStatus = localStorage.getItem("issignin");
+                    
+                        // Get the checkout button and link elements
+                        let checkoutButton = document.getElementById("checkout-button");
+                        let checkoutLink = document.getElementById("checkout-link");
+                    
+                        // Check if the button was found
+                        if (!checkoutButton) {
+                            console.error("Checkout button not found! Please check your HTML.");
+                            return; // Exit if the button is not found
+                        }
+                    
+                        // Handle sign-in status
+                        if (!checkSignInStatus || !checkSignInStatus === "1") {
+                            // User is not signed in
+                            checkoutButton.disabled = true; // Disable the button
+                            checkoutButton.style.backgroundColor = "#cccccc"; // Change background color to indicate disabled state
+                            checkoutButton.style.cursor = "not-allowed"; // Change cursor style
+                    
+                            // Prevent the link from being followed
+                            checkoutLink.addEventListener("click", (event) => {
+                                event.preventDefault(); // Prevent the default link action
+                                alert("Vui lòng đăng nhập để thanh toán!"); // Alert the user
+                            });
+                        } else {
+                            // User is signed in
+                            checkoutButton.style.cursor = "pointer"; // Change cursor style to pointer
+                    
+                            // Check if there are items in the cart
+                            let cartItems = localStorage.getItem("productsInCart");
+                            if (!cartItems || Object.keys(JSON.parse(cartItems)).length === 0) {
+                                // No items in the cart
+                                checkoutButton.disabled = true; // Disable the button
+                                checkoutButton.style.backgroundColor = "#cccccc"; // Change background color to indicate disabled state
+                                checkoutButton.style.cursor = "not-allowed"; // Change cursor style
+                    
+                                // Prevent the link from being followed
+                                checkoutLink.addEventListener("click", (event) => {
+                                    event.preventDefault(); // Prevent the default link action
+                                    alert("Giỏ hàng của bạn hiện đang trống!"); // Alert the user
+                                });
+                            } else {
+                                // Items are present in the cart, allow navigation
+                                checkoutLink.addEventListener("click", () => {
+                                    // Normal navigation occurs
+                                });
+                            }
+                        }
+                    });
+                    </script>
             </div>
 
         </div>
