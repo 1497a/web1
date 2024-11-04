@@ -1,5 +1,5 @@
 let accountusers = [{
-    email: "admin@gmail.com",
+    email: "user@gmail.com",
     sdt: "0984253741",
     diachi: "Ly thai to- quan 5",
     name: "admin",
@@ -168,22 +168,21 @@ function checkSignIn() {
     var errorMessage = document.getElementById('form-message');
     var accountuser = localStorage.getItem('accountusers');
     accountuser = JSON.parse(accountuser);
-    if (password && email) {
-        for (let i = 0; i < admins.length; i++)
-            if (email === admins[i].email) {
-                if (password === admins[i].password) {
 
-                    localStorage.setItem('issignin', 1);
-                    localStorage.setItem('email', admins[i].email);
-                    localStorage.setItem('password', admins[i].password);
-                    document.getElementById('signIn').action = "./html/admin/admin.html";
-                    this.submit();
-
-                }
-
-            }
-    }
+    // if (password && email) {
+    //     for (let i = 0; i < admins.length; i++)
+    //         if (email === admins[i].email) {
+    //             if (password === admins[i].password) {
+    //                 localStorage.setItem('issignin', 1);
+    //                 localStorage.setItem('email', admins[i].email);
+    //                 localStorage.setItem('password', admins[i].password);
+    //                 // document.getElementById('signIn').action = "./html/admin/admin.html";
+    //                 // this.submit();
+    //             }
+    //         }
+    // }
     Object.values(accountuser).map(item => {
+        console.log(email)
             if (email === item.email) {
                 if (password === item.password) {
                     localStorage.setItem('issignin', 1);
@@ -192,13 +191,12 @@ function checkSignIn() {
                     document.getElementById('signIn').action = "../../Index.html";
                     this.submit();
                 }
-
             }
-            errorMessage.innerText = "Sai Mật Khẩu";
+            else errorMessage.innerText = "Sai Mật Khẩu";
 
         }
-
     )
+
     return false;
 }
 function getBasePath() {
@@ -212,7 +210,8 @@ function getBasePath() {
     } else {
         // Trường hợp không tìm thấy 'Facility'
         console.warn("Không tìm thấy thư mục 'Facility' trong URL.");
-        return '';  
+        const fallbackPath = '/SanPham/html/';
+        return window.location.origin + fallbackPath;
     }
 }
 
