@@ -68,6 +68,10 @@ button:hover {
     margin-top: 20px;
 }
 
+.order-products-table tr,td{
+    max-width: 200px;
+}
+
 .order-products-table th, .order-products-table td {
     padding: 10px;
     text-align: left;

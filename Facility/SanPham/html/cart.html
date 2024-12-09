@@ -28,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb   -lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 28em">
                         <li class="nav-item">
                             <a class="nav-link " href="../../Index.html">Trang chủ</a>
                         </li>
@@ -39,41 +39,25 @@
                             <a class="nav-link dropdown-toggle" href="../../SanPham/html/category/product.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                       Sản Phẩm
                     </a>
-                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product.html">Tất Cả Sản Phẩm</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_ban.html">Bàn Gỗ</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_ke_sach.html">Kệ Sách</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_rem_cua.html">Rèm Cửa</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_sofa.html">Ghế Sofa</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_tu_quan_ao.html">Tủ Quần Áo</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_giuong_ngu.html">Giường Ngủ</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_phong_tam.html">Phòng Tắm</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="../../SanPham/html/category/product_den_trang_tri.html">Đèn trang trí</a></li>
-                            </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["all"], [])'>Tất cả sản phẩm</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["Bàn gỗ"], [])'>Bàn Gỗ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Kệ sách'], [])">Kệ Sách</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Rèm cửa'], [])">Rèm Cửa</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Ghế sofa'], [])">Ghế Sofa</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Tủ quần áo'], [])">Tủ Quần Áo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Giường ngủ'], [])">Giường Ngủ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Phòng tắm'], [])">Phòng Tắm</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Đèn trang trí'], [])">Đèn trang trí</a></li>
+                    </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="../../header/TinTuc.html">Tin tức</a>
@@ -83,7 +67,7 @@
                         </li>
                     </ul>
                     <form class="d-flex display: block">
-                        <input class="form-control me-2 search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput" onkeyup="myFunction()">
+                        <input class="search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput" onkeyup="myFunction()">
                         <ul id="myUL" class="list-group searchInput mt-1">
                             <li><a href="../../SanPham/html/category/detail_item/Ban/ban2.html" class="list-group-item list-group-item-action">bàn GTY 091</a></li>
                             <li><a href="../../SanPham/html/category/detail_item/tu_quan_ao/tu2.html" class="list-group-item list-group-item-action">Tủ áo B1241K</a></li>
@@ -97,7 +81,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary search-btn" type="button"><span class="ti-search"></span></button>
+                        <button class="btn btn-primary search-btn" type="button" onclick="redirectToProductPage()"><span class="ti-search"></span></button>
                     </form>
                     <div class="icon-user">
                         <li class="nav-item dropdown">
@@ -116,6 +100,9 @@
                             </ul>
                         </li>
                     </div>
+                    <a href="./cart.html" title="Mua hàng" class="cart">
+                        <li class="fas fa-cart-shopping"><span>0</span></li>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -126,89 +113,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-                    <h1>Giỏ Hàng</h1>
+                    <h2 class="cart-title">GIỎ HÀNG</h2>
                     <hr>
 
                     <!-- Shopping cart table -->
                     <div class="product-container">
-                        <div class="product-header">
-                            <h5 class="product-title">Sản Phẩm</h5>
-                            <h5 class="product-price">Giá</h5>
-                            <h5 class="product-quantity">SL</h5>
-                            <h5 class="product-total">Tổng</h5>
-                        </div>
-                        <div class="product">
-
-
-                        </div>
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th class="product-title">Sản Phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">SL</th>
+                                    <th class="product-total">Thành tiền</th>
+                                    <th class="product-action"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="product-in-cart">
+                                <!-- Sản phẩm giỏ hàng sẽ được hiển thị ở đây -->
+                            </tbody>
+                        </table>
                     </div>
+                    
                     <!-- End -->
                 </div>
-                <div class="total">
-
-
+                <div class="link-bottom">
+                    <div>
+                        <a href="../../SanPham/html/category/product.html" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Tiếp tục mua</a>
+                    </div>
+                    <div class="checkout">
+                        <a href="../../SanPham/html/checkout.html" id="checkout-link">Bắt đầu thanh toán<i style="margin-left: 0.5rem !important;" class="fas fa-long-arrow-alt-right me-2"></i></a>
+                    </div>
                 </div>
-                <div class="checkout">
-                    <a href="../../SanPham/html/checkout.html" id="checkout-link">
-                        <button class="btn btn-primary" id="checkout-button">Bắt Đầu Thanh Toán</button>
-                    </a>
-                </div>
-                <div>
-                    <a href="../../SanPham/html/category/product.html" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Tiếp tục mua</a>
-                </div>
-                <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                        // Check the sign-in status from local storage
-                        let checkSignInStatus = localStorage.getItem("issignin");
-                    
-                        // Get the checkout button and link elements
-                        let checkoutButton = document.getElementById("checkout-button");
-                        let checkoutLink = document.getElementById("checkout-link");
-                    
-                        // Check if the button was found
-                        if (!checkoutButton) {
-                            console.error("Checkout button not found! Please check your HTML.");
-                            return; // Exit if the button is not found
-                        }
-                    
-                        // Handle sign-in status
-                        if (!checkSignInStatus || !checkSignInStatus === "1") {
-                            // User is not signed in
-                            checkoutButton.disabled = true; // Disable the button
-                            checkoutButton.style.backgroundColor = "#cccccc"; // Change background color to indicate disabled state
-                            checkoutButton.style.cursor = "not-allowed"; // Change cursor style
-                    
-                            // Prevent the link from being followed
-                            checkoutLink.addEventListener("click", (event) => {
-                                event.preventDefault(); // Prevent the default link action
-                                alert("Vui lòng đăng nhập để thanh toán!"); // Alert the user
-                            });
-                        } else {
-                            // User is signed in
-                            checkoutButton.style.cursor = "pointer"; // Change cursor style to pointer
-                    
-                            // Check if there are items in the cart
-                            let cartItems = localStorage.getItem("productsInCart");
-                            if (!cartItems || Object.keys(JSON.parse(cartItems)).length === 0) {
-                                // No items in the cart
-                                checkoutButton.disabled = true; // Disable the button
-                                checkoutButton.style.backgroundColor = "#cccccc"; // Change background color to indicate disabled state
-                                checkoutButton.style.cursor = "not-allowed"; // Change cursor style
-                    
-                                // Prevent the link from being followed
-                                checkoutLink.addEventListener("click", (event) => {
-                                    event.preventDefault(); // Prevent the default link action
-                                    alert("Giỏ hàng của bạn hiện đang trống!"); // Alert the user
-                                });
-                            } else {
-                                // Items are present in the cart, allow navigation
-                                checkoutLink.addEventListener("click", () => {
-                                    // Normal navigation occurs
-                                });
-                            }
-                        }
-                    });
-                    </script>
             </div>
 
         </div>
@@ -216,76 +151,109 @@
 
     </main>
     <!-- End block content -->
-    <footer>
-        <div class="success1">
-            <div class="container">
-                <div class="catch1 row">
-                    <div class="t1 col-md-4">
-                        <div class="select1">
-                            <h4 class="low1">GIỚI THIỆU</h4>
-                            <p>
-                                Đến với Dekor, bạn hoàn toàn yên tâm để chọn được cho mình một bộ nội thất phù hợp nhất, kết hợp đầy đủ, hài hòa các yếu tố về màu sắc, kiểu dáng, kích thước để làm cho không gian ngôi nhà bạn trở nên ấn tượng hơn!
-                            </p>
-                            <ul class="select2">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                <li><a href="#"><i class="ti-email"></i></a></li>
-                                <li><a href="#"><i class="ti-youtube"></i></a></li>
-                            </ul>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-3 intro">
+                    <h4>GIỚI THIỆU</h4>
+                    <p>Đến với Dekor, bạn hoàn toàn yên tâm để chọn được cho mình một bộ nội thất phù hợp nhất, kết hợp đầy đủ, hài hòa các yếu tố về màu sắc, kiểu dáng, kích thước để làm cho không gian ngôi nhà bạn trở nên ấn tượng hơn!</p>
+                    <ul>
+                        <li><a href=""><i class="ti-facebook"></i></a></li>
+                        <li><a href=""><i class="ti-twitter"></i></a></li>
+                        <li><a href=""><i class="ti-email"></i></a></li>
+                        <li><a href=""><i class="ti-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3 policy news">
+                    <h4>CHÍNH SÁCH</h4>
+                    <div class="news_item row" style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách bảo hành
+                    </div>
+                    <div class="news_item row" style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách bảo mật
+                    </div>
+                    <div class="news_item row" style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách đổi trả
+                    </div>
+                    <div class="news_item row" style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách giao hàng
+                    </div>
+                    <div class="news_item row" style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách thanh toán
+                    </div>
+                </div>
+                
+                
+                <div class="col-xs-12 col-md-6 col-lg-3 addr">
+                    <h4>ĐỊA CHỈ LIÊN HỆ</h4>
+                    <p><i class="fas fa-location-dot"></i>Đường Số 1, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                    <p class="phone_num"><i class="fas fa-phone"></i><a href="">+84 123 456 789</a></p>
+                    <p>
+                        <form class="form">
+                            <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+                            <button type="button" class="asd btn btn-primary ">Gửi</button>
+                        </form>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3 news">
+                    <h4>TIN MỚI</h4>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../SanPham/img/news/news_1.png">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../header/TinTuc1.html">Bí quyết bảo quản nội thất gỗ</a></h5>
+                            <p>11/11/2022</p>
                         </div>
                     </div>
-                    <div class="t2 col-md-4">
-                        <h4 class="low1">Đường dẫn</h4>
-                        <a href="../../Index.html">
-                            <p>Trang chủ</p>
-                        </a>
-                        <a href="../../header/GioiThieu.html">
-                            <p>Giới thiệu</p>
-                        </a>
-                        <a href="../../SanPham/html/category/product.html">
-                            <p>Sản phẩm</p>
-                        </a>
-                        <a href="../../header/TinTuc.html">
-                            <p>Tin tức </p>
-                        </a>
-                        <a href="../../header/LienHe.html">
-                            <p>Liên hệ</p>
-                        </a>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../SanPham/img/news/news_2.png">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../header/Tintuc2.html">Kinh nghiệm mua, bảo quản nội thất</a></h5>
+                            <p>11/11/2022</p>
+                        </div>
                     </div>
-                    <div class="t3 col-md-4">
-                        <h4 class="low1">Thông tin liên hệ</h4>
-                        <ul class="info">
-                            <li>
-                                <span><i class="ti-location-pin"></i></span>
-                                <span>Đường Số 1<br />
-                    Quận 1, Thành Phố Hồ Chí Minh<br />
-                    Việt Nam</span>
-                            </li>
-                            <li>
-                                <span><i class="ti-headphone-alt"></i></span>
-                                <p><a href="#">+84 123 456 789</a>
-                                    <br />
-                                    <a href="#">+84 987 654 321</a></p>
-                            </li>
-                            <li>
-                                <span><i class="ti-email"></i></span>
-                                <p><a href="#">diachiemail@gmail.com</a></p>
-                            </li>
-                            <li>
-                                <form class="form">
-                                    <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
-                                    <button type="button" class="asd btn btn-primary ">Gửi</button>
-                                </form>
-                            </li>
-                        </ul>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../SanPham/img/news/news_3.png" alt="">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../header/Tintuc3.html">Bố trí nội thất, cần tránh những gì ?</a></h5>
+                            <p>11/11/2022</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="../../SanPham/js/icon_cart.js">
-    </script>
+    <script src="../../SanPham/js/data.js"></script>
+    <script src="../../SanPham/js/icon_cart.js"></script>
     <script src="../../SanPham/js/account.js"></script>
+    <script>
+        function updateUrl(categories, brands) {
+            // Mã hóa categories và brands thành chuỗi JSON và sau đó mã hóa URL
+            const encodedCategories = (JSON.stringify(categories));
+            const encodedBrands = (JSON.stringify(brands));
+            
+            // Cập nhật URL với các tham số mới
+            const url = new URL(getBasePath() + '/SanPham/html/category/product.html'); // Chuyển hướng đến trang sản phẩm
+            url.searchParams.set('categories', encodedCategories);
+            url.searchParams.set('brands', encodedBrands);
+            
+            // Chuyển hướng đến URL mới
+            window.location.href = url.toString();
+        }
+        
+                
+                
+                </script>
 
 </body>
 

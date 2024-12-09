@@ -1,522 +1,268 @@
-let carts = document.querySelectorAll(".add-cart");
-const products = [
-  {
-    id: "ban1",
-    title: "Bàn Gỗ Đẹp",
-    link: "../../SanPham/html/category/detail_item/Ban/ban1.html",
-    image: "../../SanPham/img/category/Ban/cafe-tron-go-dep.png",
-    price: 4500000,
-    inCart: 0,
-  },
-  {
-    id: "ban2",
-    title: "Bàn Gỗ Đẹp 2",
-    link: "../../SanPham/html/category/detail_item/Ban/ban2.html",
-    image: "../../SanPham/img/category/Ban/GTY-091.png",
-    price: 3500000,
-    inCart: 0,
-  },
-  {
-    id: "den2",
-    title: "Netviet-NV-9005-2",
-    link: "../../SanPham/html/category/detail_item/den_trang_tri/den2.html",
-    image: "../../SanPham/img/category/DenTrangTri/Netviet-NV-9005-2.png",
-    price: 9700000,
-    inCart: 0,
-  },
-  {
-    id: "ban3",
-    title: "Bàn Gỗ tròn",
-    link: "../../SanPham/html/category/detail_item/Ban/ban3.html",
-    image: "../../SanPham/img/category/Ban/tron-kinh.png",
-    price: 23000000,
-    inCart: 0,
-  },
-  {
-    id: "ban4",
-    title: "Bàn Gỗ dài",
-    link: "../../SanPham/html/category/detail_item/Ban/ban4.html",
-    image: "../../SanPham/img/category/Ban/go-dai.png",
-    price: 1890000,
-    inCart: 0,
-  },
-  {
-    id: "den1",
-    title: "Netviet-NV-8825",
-    link: "../../SanPham/html/category/detail_item/den_trang_tri/den1.html",
-    image: "../../SanPham/img/category/DenTrangTri/Netviet-NV-8825.png",
-    price: 780000,
-    inCart: 0,
-  },
+function addToCart(buttonElement) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = users.find(user => user.isSignIn === 1);
 
-  {
-    id: "den3",
-    title: "Netviet-NV-8205-1",
-    link: "../../SanPham/html/category/detail_item/den_trang_tri/den4.html",
-    image: "../../SanPham/img/category/DenTrangTri/Netviet-NV-8205-1.png",
-    price: 590000,
-    inCart: 0,
-  },
-  {
-    id: "den4",
-    title: "Composite-AP-B948",
-    link: "../../SanPham/html/category/detail_item/den_trang_tri/den3.html",
-    image: "../../SanPham/img/category/DenTrangTri/Composite-AP-B948.png",
-    price: 10000000,
-    inCart: 0,
-  },
-  {
-    id: "giuong1",
-    link: "../../SanPham/html/category/detail_item/giuong_ngu/giuong1.html",
-    image: "../../SanPham/img/category/GiuongNgu/Bellasofa-BS701.png",
-    title: "Giường Bellasofa BS701",
-    price: 11000000,
-    inCart: 0,
-  },
-  {
-    id: "giuong2",
-    link: "../../SanPham/html/category/detail_item/giuong_ngu/giuong2.html",
-    image: "../../SanPham/img/category/GiuongNgu/Furniland-01.png",
-    title: "Giường ngủ FURNILAND - Jangin Haim (1.8m)",
-    price: 5400000,
-    inCart: 0,
-  },
-  {
-    id: "giuong3",
-    link: "../../SanPham/html/category/detail_item/giuong_ngu/giuong3.html",
-    image: "../../SanPham/img/category/GiuongNgu/Furniland-02.png",
-    title: "Giường ngủ FURNILAND - Jangin Christine (1m8)",
-    price: 12000000,
-    inCart: 0,
-  },
-  {
-    id: "giuong4",
-    link: "../../SanPham/html/category/detail_item/giuong_ngu/giuong4.html",
-    image: "../../SanPham/img/category/GiuongNgu/Bellasofa-B1239.png",
-    title: "Giường Bellasofa B1239",
-    price: 9000000,
-    inCart: 0,
-  },
-  {
-    id: "ke1",
-    link: "../../SanPham/html/category/detail_item/ke_sach/ke1.html",
-    image: "../../SanPham/img/category/KeSach/go-4-tang-40.png",
-    title: "Kệ sách gỗ 4 tầng 40",
-    price: 510000,
-    inCart: 0,
-  },
-  {
-    id: "ke2",
-    link: "../../SanPham/html/category/detail_item/ke_sach/ke2.html",
-    image: "../../SanPham/img/category/KeSach/BOV-SPR-1980DK.png",
-    title: "Kệ sách BIG ONE VIETNAM SPR-1980DK",
-    price: 600000,
-    inCart: 0,
-  },
-  {
-    id: "ke3",
-    link: "../../SanPham/html/category/detail_item/ke_sach/ke3.html",
-    image: "../../SanPham/img/category/KeSach/RubikMH-1846.png",
-    title: "Kệ trang trí Rubik Modulo Home 1846",
-    price: 1100000,
-    inCart: 0,
-  },
-  {
-    id: "ke4",
-    link: "../../SanPham/html/category/detail_item/ke_sach/ke4.html",
-    image: "../../SanPham/img/category/KeSach/treo-Hurakids-2130-001.png",
-    title: "Giá sách treo Hurakids 2130-001",
-    price: 590000,
-    inCart: 0,
-  },
-  {
-    id: "tam1",
-    link: "../../SanPham/html/category/detail_item/phong_tam/tam1.html",
-    image: "../../SanPham/img/category/PhongTam/thanh-treo-giay.png",
-    title: "Thanh treo giấy vệ sinh",
-    price: 150000,
-    inCart: 0,
-  },
-  {
-    id: "tam2",
-    link: "../../SanPham/html/category/detail_item/phong_tam/tam2.html",
-    image: "../../SanPham/img/category/PhongTam/thanh-treo-khan.png",
-    title: "Thanh sắt treo khăn",
-    price: 109000,
-    inCart: 0,
-  },
-  {
-    id: "tam3",
-    link: "../../SanPham/html/category/detail_item/phong_tam/tam3.html",
-    image: "../../SanPham/img/category/PhongTam/ke-xa-phong.png",
-    title: "Kệ chứa xà phòng",
-    price: 190000,
-    inCart: 0,
-  },
-  {
-    id: "tam4",
-    link: "../../SanPham/html/category/detail_item/phong_tam/tam4.html",
-    image: "../../SanPham/img/category/PhongTam/den-DTY.png",
-    title: "Bóng đèn DTY",
-    price: 80000,
-    inCart: 0,
-  },
-  {
-    id: "rem1",
-    link: "../../SanPham/html/category/detail_item/rem_cua/rem1.html",
-    image: "../../SanPham/img/category/RemCua/num-01.png",
-    title: "Rèm cửa 01",
-    price: 900000,
-    inCart: 0,
-  },
-  {
-    id: "rem2",
-    link: "../../SanPham/html/category/detail_item/rem_cua/rem2.html",
-    image: "../../SanPham/img/category/RemCua/num-02.png",
-    title: "Rèm cửa 02",
-    price: 890000,
-    inCart: 0,
-  },
-  {
-    id: "rem3",
-    link: "../../SanPham/html/category/detail_item/rem_cua/rem3.html",
-    image: "../../SanPham/img/category/RemCua/num-03.png",
-    title: "Rèm cửa 03",
-    price: 750000,
-    inCart: 0,
-  },
-  {
-    id: "rem4",
-    link: "../../SanPham/html/category/detail_item/rem_cua/rem4.html",
-    image: "../../SanPham/img/category/RemCua/num-04.png",
-    title: "Rèm cửa 04",
-    price: 950000,
-    inCart: 0,
-  },
-  {
-    id: "sofa1",
-    link: "../../SanPham/html/category/detail_item/sofa/sofa1.html",
-    image: "../../SanPham/img/category/Sofa/kem.png",
-    title: "Ghế sofa kem",
-    price: 2500000,
-    inCart: 0,
-  },
-  {
-    id: "sofa2",
-    link: "../../SanPham/html/category/detail_item/sofa/sofa2.html",
-    image: "../../SanPham/img/category/Sofa/cafe.png",
-    title: "Sofa cafe",
-    price: 2300000,
-    inCart: 0,
-  },
-  {
-    id: "sofa3",
-    link: "../../SanPham/html/category/detail_item/sofa/sofa3.html",
-    image: "../../SanPham/img/category/Sofa/don-em-ai.png",
-    title: "Ghế sofa đơn êm ái",
-    price: 2600000,
-    inCart: 0,
-  },
-  {
-    id: "sofa4",
-    link: "../../SanPham/html/category/detail_item/sofa/sofa4.html",
-    image: "../../SanPham/img/category/Sofa/don-SFD18.png",
-    title: "Sofa đơn SFD18",
-    price: 5100000,
-    inCart: 0,
-  },
-  {
-    id: "tu1",
-    link: "../../SanPham/html/category/detail_item/tu_quan_ao/tu1.html",
-    image: "../../SanPham/img/category/TuQuanAo/BOV-WVR-1855L.png",
-    title: "Tủ quần áo BIG ONE VIETNAM WVR-1855L",
-    price: 4000000,
-    inCart: 0,
-  },
-  {
-    id: "tu2",
-    link: "../../SanPham/html/category/detail_item/tu_quan_ao/tu1.html",
-    image: "../../SanPham/img/category/TuQuanAo/B1241K.png",
-    title: "Tủ áo B1241K",
-    price: 5400000,
-    inCart: 0,
-  },
-  {
-    id: "tu3",
-    link: "../../SanPham/html/category/detail_item/tu_quan_ao/tu1.html",
-    image: "../../SanPham/img/category/TuQuanAo/Bellasofa-B1239.png",
-    title: "Tủ Áo Bellasofa B1239",
-    price: 3790000,
-    inCart: 0,
-  },
-  {
-    id: "tu4",
-    link: "../../SanPham/html/category/detail_item/tu_quan_ao/tu1.html",
-    image: "../../SanPham/img/category/TuQuanAo/B1238.png",
-    title: "Tủ áo B1238",
-    price: 5100000,
-    inCart: 0,
-  },
-];
-let checkSignIn2 = localStorage.getItem("issignin");
-
-// Get the checkout link and button elements
-// let checkoutButton = document.getElementById("checkout-button");
-// let checkoutLink = document.getElementById("checkout-link");
-
-// // Check if the user is signed in
-// if (!checkSignIn2 || !checkSignIn2 === "1") {
-//     // If not signed in, disable the button
-//     checkoutButton.disabled = true; // Disable the button
-//     checkoutButton.style.backgroundColor = "#cccccc"; // Change background color to indicate disabled state
-//     checkoutButton.style.cursor = "not-allowed"; // Change cursor style
-
-//     // Prevent the link from being followed
-//     checkoutLink.addEventListener("click", (event) => {
-//         event.preventDefault(); // Prevent the default link action
-//         alert("Vui lòng đăng nhập để thanh toán!"); // Alert the user
-//     });
-// }  else {
-
-//     // Check if there are items in the cart
-//     let cartItems = localStorage.getItem("productsInCart");
-//     if (!cartItems || Object.keys(JSON.parse(cartItems)).length === 0) {
-//         checkoutButton.disabled = true;
-//         checkoutButton.style.backgroundColor = "#cccccc"; 
-//         checkoutButton.style.cursor = "not-allowed";
-
-//         checkoutLink.addEventListener("click", (event) => {
-//             event.preventDefault();
-//             alert("Giỏ hàng của bạn hiện đang trống!");
-//         });
-//     } else {
-//         // If there are items in the cart, allow normal functionality
-//         checkoutLink.addEventListener("click", () => {
-//             // Here, you can proceed with normal navigation
-//             // The user is signed in and has items in their cart
-//             // Optional: You can add any additional functionality here
-//         });
-//     }
-// }
-if (checkSignIn2 && checkSignIn2 === "1") {
-  for (let j = 0; j < products.length; j++) {
-    for (let i = 0; i < carts.length; i++) {
-      carts[i].addEventListener("click", () => {
-        if (carts[i].id === products[j].id) {
-          cartNumbers(products[j]);
-          totalCost(products[j]);
-        }
-      });
+    if (!currentUser) {
+        alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+        return;
     }
-  }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get("id"));
+    
+
+    if (!productId) {
+        alert("Không tìm thấy sản phẩm để thêm vào giỏ hàng!");
+        return;
+    }
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const product = products.find(item => item.id === productId);
+
+    if (!product) {
+        alert("Sản phẩm không tồn tại!");
+        return;
+    }
+
+    let quantity = parseInt(document.querySelector("#add-to-cart-btn").value);
+    if (!quantity || quantity <= 0) {
+        alert("Số lượng không hợp lệ!");
+        return;
+    }
+
+    let cartItem = currentUser.cart.find(item => item.product.id === productId);
+
+    if (cartItem) {
+        cartItem.quantity += quantity;
+    } else {
+        currentUser.cart.push({
+            product,
+            quantity: quantity
+        });
+    }
+
+    users = users.map(user => {
+        if (user.isSignIn === 1) return currentUser;
+        return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    updateCartIcon(currentUser.cart);
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
 }
 
-function checkSignIn1() {
-  let checkSignIn = localStorage.getItem("issignin");
-  if (!checkSignIn) alert("Vui Long Đăng Nhập Để Mua Hàng");
+function updateCartIcon(cart) {
+    const cartIcon = document.querySelector(".cart li span");
+    if (cartIcon) {
+        const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+        cartIcon.innerText = totalQuantity;
+    }
 }
 
-function onLoadCartNumbers() {
-  let productNumbers = localStorage.getItem("cartNumbers");
-  let checkSignIn2 = localStorage.getItem("issignin");
 
-  if (!checkSignIn2 || checkSignIn2 === "false") {
-    document.querySelector(".cart span").textContent = 0;
-    return;
-  }
-  if (productNumbers) {
-    document.querySelector(".cart span").textContent = productNumbers;
-  }
+window.onload = function () {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(user => user.isSignIn === 1);
+    if (currentUser) {
+        updateCartIcon(currentUser.cart);
+    }
+};
+
+function buyNow(productId) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = users.find(user => user.isSignIn === 1);
+
+    if (!currentUser) {
+        alert("Vui lòng đăng nhập để mua sản phẩm!");
+        return;
+    }
+
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const product = products.find(item => item.id === productId);
+
+    if (!product) {
+        alert("Sản phẩm không tồn tại!");
+        return;
+    }
+
+    let cartItem = currentUser.cart.find(item => item.product.id === productId);
+
+    if (cartItem) {
+        cartItem.quantity += 1;
+    } else {
+        currentUser.cart.push({
+            product,
+            quantity: 1
+        });
+    }
+
+    users = users.map(user => {
+        if (user.isSignIn === 1) return currentUser;
+        return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    updateCartIcon(currentUser.cart);
+
+    window.location.href = getBasePath()+"/SanPham/html/cart.html";
 }
 
-function cartNumbers(product) {
-  let checkSignIn = localStorage.getItem("issignin");
 
-  if (!checkSignIn || checkSignIn === "false") {
-    document.querySelector(".cart span").textContent = 0;
-    return;
-  }
-
-  // Tiếp tục nếu người dùng đã đăng nhập
-  let productNumbers = localStorage.getItem("cartNumbers");
-  let qty = localStorage.getItem("newqty");
-  qty = parseInt(qty);
-  console.log("Can run");
-
-  productNumbers = parseInt(productNumbers);
-
-  if (productNumbers) {
-    if (carts.length === 1) {
-      localStorage.setItem("cartNumbers", productNumbers + qty);
-      document.querySelector(".cart span").textContent = productNumbers + qty;
-      console.log("Can run1");
-    } else {
-      localStorage.setItem("cartNumbers", productNumbers + 1);
-      document.querySelector(".cart span").textContent = productNumbers + 1;
-      console.log("Can run2");
-    }
-  } else {
-    if (carts.length === 1) {
-      localStorage.setItem("cartNumbers", qty);
-      document.querySelector(".cart span").textContent = qty;
-      console.log("Can run3");
-    } else {
-      localStorage.setItem("cartNumbers", 1);
-      document.querySelector(".cart span").textContent = 1;
-      console.log("Can run4");
-    }
-  }
-
-  setItems(product);
-}
-
-function setItems(product) {
-  let cartItems = localStorage.getItem("productsInCart");
-  cartItems = JSON.parse(cartItems);
-  let qty = localStorage.getItem("newqty");
-  qty = parseInt(qty);
-  console.log([product.title]);
-  if (cartItems != null) {
-    if (cartItems[product.title] == undefined) {
-      cartItems = {
-        ...cartItems,
-        [product.title]: product,
-      };
-    }
-    if (carts.length === 1) {
-      cartItems[product.title].inCart += qty;
-    } else {
-      cartItems[product.title].inCart += 1;
-    }
-  } else {
-    if (carts.length === 1) {
-      product.inCart = qty;
-    } else {
-      product.inCart = 1;
-    }
-    cartItems = {
-      [product.title]: product,
-    };
-  }
-  localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-}
-
-function totalCost(product) {
-  let cartCost = localStorage.getItem("totalCost");
-  let qty = localStorage.getItem("newqty");
-  console.log(product.price);
-  qty = parseInt(qty);
-  if (cartCost != null) {
-    cartCost = parseInt(cartCost);
-    if (carts.length === 1) {
-      localStorage.setItem("totalCost", cartCost + qty * product.price);
-    } else {
-      localStorage.setItem("totalCost", cartCost + product.price);
-    }
-  } else {
-    if (carts.length === 1) {
-      localStorage.setItem("totalCost", qty * product.price);
-    } else {
-      localStorage.setItem("totalCost", product.price);
-    }
-  }
-}
 
 function displayCart() {
-  let cartItems = localStorage.getItem("productsInCart");
-  cartItems = JSON.parse(cartItems);
-  let productContainer = document.querySelector(".product");
-  let cartCost = localStorage.getItem("totalCost");
-  console.log(productContainer);
-  let productTotal = document.querySelector(".total");
-  if (cartItems && productContainer) {
-    productContainer.innerHTML = " ";
-    Object.values(cartItems).map((item) => {
-      console.log(item.name);
-      productContainer.innerHTML += `
-           <div class="product-title">
-            <button class="fa fa-trash" id="${item.id}" onclick="deleteItem(${
-        item.id
-      })" aria-hidden="true"></button>
-                <img src ="${item.image}">
-                <span>${item.title}</span>
-            </div>
-            <div class="product-price">${item.price} Đ</div>
-            <div class="product-quantity">  ${item.inCart}</div>    
-            <div class="product-total">${item.inCart * item.price} Đ</div>
-            `;
-    });
-    productTotal.innerHTML += `
-        <div class="grandTotal">
-        <a class="grandTotal-title">Tổng Cộng:</a>
-        <a class="valueTotal">${cartCost} Đ</a>
-        </div>
-        
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const currentUser = users.find((user) => user.isSignIn === 1);
+
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+
+    const cart = currentUser.cart || [];
+    const cartContainer = document.querySelector(".product-in-cart");
+    if (!cartContainer) {
+        console.error("Không tìm thấy container để hiển thị giỏ hàng!");
+        return;
+    }
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<tr><td style="text-align:center" colspan="5">Giỏ hàng của bạn đang trống.</td></tr>';
+        return;
+    }
+
+    cartContainer.innerHTML = "";
+
+    cart.forEach(item => {
+        const product = item.product;
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td class="product-title">
+                <img src="${product.image.length>100?product.image:getBasePath() + product.image}" alt="${product.title}">
+                <span title="${product.title}" style="display: inline-block; max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.title}</span>
+            </td>
+            <td class="product-price">${product.price.toLocaleString("vi-VN")} Đ</td>
+            <td class="product-quantity">
+                <button class="quantity-btn minus" onclick="updateQuantity(${product.id}, -1)">-</button><input type="number" class="quantity-input" value="${item.quantity}" min="1" id="quantity-${product.id}"><button class="quantity-btn plus" onclick="updateQuantity(${product.id}, 1)">+</button>
+            </td>
+            <td class="product-total" style="width:220px">${(item.quantity * product.price).toLocaleString("vi-VN")} Đ</td>
+            <td class="product-action">
+                <button onclick="deleteItem(${product.id})"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
         `;
-  }
-}
 
-function remove_Item(product) {
-  let cartItems = localStorage.getItem("productsInCart");
-  cartItems = JSON.parse(cartItems);
-  if (cartItems != null) {
-    if (cartItems[product.title] == undefined) {
-      cartItems = {
-        ...cartItems,
-        [product.title]: product,
-      };
-    }
-    cartItems[product.title].inCart = cartItems[product.title].inCart;
-  } else {
-    if (carts.length === 1) {
-      product.inCart = qty;
-    } else {
-      product.inCart = product.inCart;
-    }
-    cartItems = {
-      [product.title]: product,
-    };
-  }
-  localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-}
+        cartContainer.appendChild(tr);
 
-function retotalCost(product) {
-  let cartCost = localStorage.getItem("totalCost");
-  if (cartCost != null) {
-    cartCost = parseInt(cartCost);
-
-    localStorage.setItem(
-      "totalCost",
-      cartCost + product.price * product.inCart
-    );
-  } else {
-    localStorage.setItem("totalCost", product.price * product.inCart);
-  }
-}
-
-function deleteItem(button) {
-  console.log(button);
-  let cartItems = localStorage.getItem("productsInCart");
-  cartItems = JSON.parse(cartItems);
-  let cartItem = localStorage.getItem("cartNumbers");
-  cartItem = parseInt(cartItem);
-  let cartCost = localStorage.getItem("totalCost");
-  if (cartItems) {
-    localStorage.removeItem("productsInCart");
-    localStorage.removeItem("totalCost");
-    Object.values(cartItems).map((item) => {
-      if (item.id === button.id) {
-        cartItem = cartItem - item.inCart;
-      } else {
-        remove_Item(item);
-        retotalCost(item);
-      }
-      localStorage.setItem("cartNumbers", JSON.stringify(cartItem));
+        const quantityInput = document.getElementById(`quantity-${product.id}`);
+        if (quantityInput) {
+            quantityInput.addEventListener("input", function() {
+                const newQuantity = quantityInput.value;
+                if (!isNaN(newQuantity) && newQuantity >= 1) {
+                    updateQuantity(product.id, 0, newQuantity); // Tham số 0 vì không có thay đổi từ nút + hay -
+                } else {
+                    console.log("Số lượng không hợp lệ!");
+                }
+            });
+        }
     });
-  }
-  location.reload();
+
+    const total = cart.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
+    const totalRow = document.createElement("tr");
+    totalRow.innerHTML = `
+    <td colspan="4" style="text-align: right;">Tổng cộng:</td>
+    <td class="total" style="font-weight: bold;">${total.toLocaleString("vi-VN")} Đ</td>
+    `;
+    
+    cartContainer.appendChild(totalRow);
 }
-if (checkSignIn2) {
+
+displayCart();
+
+function updateQuantity(productId, change, directInput = null) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const currentUser = users.find((user) => user.isSignIn === 1);
+
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+
+    let cart = currentUser.cart || [];
+
+    const itemIndex = cart.findIndex(item => item.product.id === productId);
+
+    if (itemIndex !== -1) {
+        const item = cart[itemIndex];
+        let newQuantity;
+        if (directInput !== null) {
+            newQuantity = parseInt(directInput, 10);
+
+            if (isNaN(newQuantity) || newQuantity < 1) {
+                console.log("Số lượng phải là số nguyên lớn hơn hoặc bằng 1!");
+                return;
+            }
+        } else {
+            newQuantity = item.quantity + change;
+
+            if (newQuantity < 1) {
+                console.log("Số lượng không thể nhỏ hơn 1!");
+                return;
+            }
+        }
+
+        item.quantity = newQuantity;
+    }
+
+    currentUser.cart = cart;
+    localStorage.setItem("users", JSON.stringify(users));
+
     displayCart();
-    onLoadCartNumbers();
+    updateCartIcon(cart);
 }
+
+
+function deleteItem(productId) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(user => user.isSignIn === 1);
+
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+    currentUser.cart = currentUser.cart.filter(item => item.product.id !== productId);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    displayCart();
+    updateCartIcon(currentUser.cart);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cartLink = document.querySelector("a.cart");
+
+    if (cartLink) {
+        cartLink.addEventListener("click", function (event) {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            const isUserSignedIn = users.some(user => user.isSignIn === 1);
+
+            if (!isUserSignedIn) {
+                event.preventDefault();
+                swal({
+                    title: "Thông báo",
+                    text: "Vui lòng đăng nhập để truy cập giỏ hàng!",
+                    icon: "warning",
+                    buttons: ["Đóng", "Đăng nhập"],
+                }).then((willLogin) => {
+                    if (willLogin) {
+                        window.location.href = getBasePath()+"/SanPham/html/DangNhap.html";
+                    }
+                });
+            }
+        });
+    }
+});
+

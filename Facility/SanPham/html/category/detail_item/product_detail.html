@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="../../../bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../font_Roboto/Roboto-Bold.ttf">
+    <link rel="stylesheet" href="../../../../css/themify-icons/themify-icons.css">
+    <script src="../../../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../../css/detail_item.css">
+    <link rel="stylesheet" href="../../../css/product.css">
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/cart.css">
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../../style.js"></script>
+    <title>Bàn Cafe tròn gỗ đẹp</title>
+    <style>
+        .category_left_menu {
+            transition: color 0.3s, background-color 0.3s, transform 0.3s;
+        }
+
+        .category_left_menu:hover {
+            transform: translateX(5px);
+        }
+
+        .category_left_menu a:hover {
+            color: #444444;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../Index.html">
+                    <img src="../../../img/logo.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 28em">
+                        <li class="nav-item">
+                            <a class="nav-link " href="../../../../Index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../../../header/GioiThieu.html">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="../../../html/category/product.html"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                Sản Phẩm
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick='updateUrl(["all"], [])'>Tất cả sản phẩm</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick='updateUrl(["Bàn gỗ"], [])'>Bàn Gỗ</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Kệ sách'], [])">Kệ Sách</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Rèm cửa'], [])">Rèm Cửa</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Ghế sofa'], [])">Ghế Sofa</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Tủ quần áo'], [])">Tủ Quần Áo</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Giường ngủ'], [])">Giường Ngủ</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Phòng tắm'], [])">Phòng Tắm</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:void(0)"
+                                        onclick="updateUrl(['Đèn trang trí'], [])">Đèn trang trí</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="../../../../header/TinTuc.html">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="../../../../header/LienHe.html">Liên Hệ</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex display: block">
+                        <input class="search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput"
+                            onkeyup="myFunction()">
+                        <ul id="myUL" class="list-group searchInput mt-1">
+                            <li><a href="../../../html/category/detail_item/Ban/ban2.html"
+                                    class="list-group-item list-group-item-action">bàn GTY 091</a></li>
+                            <li><a href="../../../html/category/detail_item/tu_quan_ao/tu2.html"
+                                    class="list-group-item list-group-item-action">Tủ áo B1241K</a></li>
+
+                            <li><a href="../../../html/category/detail_item/ke_sach/ke1.html"
+                                    class="list-group-item list-group-item-action">Kệ sách gỗ 4 tầng 40</a></li>
+                            <li><a href="../../../html/category/detail_item/rem_cua/rem1.html"
+                                    class="list-group-item list-group-item-action">Rèm Cửa 01</a></li>
+
+                            <li><a href="../../../html/category/detail_item/phong_tam/tam1.html"
+                                    class="list-group-item list-group-item-action">Thanh treo giấy vệ sinh</a></li>
+                            <li><a href="../../../html/category/detail_item/sofa/sofa2.html"
+                                    class="list-group-item list-group-item-action">Sofa Cafe</a></li>
+                            <li><a href="../../../html/category/detail_item/giuong_ngu/giuong4.html"
+                                    class="list-group-item list-group-item-action">Giường Bellasofa B1239</a></li>
+
+                        </ul>
+
+                        <button class="btn btn-primary search-btn" type="button" onclick="redirectToProductPage()"><span
+                                class="ti-search"></span></button>
+                    </form>
+                    <div class="icon-user">
+                        <li class="nav-item dropdown">
+                            <a class="fas fa-user nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown"></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../../../html/Dangnhap.html" class="dropdown-item">
+                                        Đăng Nhập</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a href="../../../html/Dangky.html" class="dropdown-item">
+                                        Đăng Ký
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                    <a href="../../../html/cart.html" title="Mua hàng" class="cart">
+                        <li class="fas fa-cart-shopping"><span>0</span></li>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="category">
+        <div class="top_nav">
+            <ul class="line_up">
+                <li><a href="../../../../Index.html">Trang chủ</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li id="name-category"></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li id="name-product"></li>
+            </ul>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 category_left">
+                    <div class="row">
+                        <div class="col-lg-12 category_top">
+                            <div class="title_module_main">
+                                <h2>LOẠI SẢN PHẨM</h2>
+                            </div>
+                        </div>
+
+                        <div class="category_left_content">
+                            <ul>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick='updateUrl(["all"], [])'>Tất cả sản phẩm</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick='updateUrl(["Bàn gỗ"], [])'>Bàn Gỗ</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Kệ sách'], [])">Kệ Sách</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Rèm cửa'], [])">Rèm Cửa</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Ghế sofa'], [])">Ghế Sofa</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Tủ quần áo'], [])">Tủ Quần Áo</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Giường ngủ'], [])">Giường Ngủ</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Phòng tắm'], [])">Phòng Tắm</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="category_left_menu">
+                                    <i class="fas fa-chevron-right"></i>
+                                    <a href="javascript:void(0)" onclick="updateUrl(['Đèn trang trí'], [])">Đèn trang
+                                        trí</a>
+                                </li>
+
+
+                            </ul>
+                            <script>
+                                const itemsliderbar = document.querySelectorAll(".category_left_menu")
+                                itemsliderbar.forEach(function (menu, index) {
+                                    menu.addEventListener("click", function () {
+                                        menu.classList.toggle("block")
+                                    })
+                                })
+                            </script>
+                        </div>
+
+                        <div class="col-lg-12 category_top">
+                            <div class="title_module_main">
+                                <h2>SẢN PHẨM BÁN CHẠY</h2>
+                            </div>
+                            <div class="category_hot_item col-12" id="hot-product">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-9 row category_right">
+                    <div class="col-sm-12 col-md-6" id="product-image">
+
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div>
+                            <div class="details_pro">
+
+                            </div>
+                            <p>Số lượng:</p>
+                            <div class="form_btn_detail">
+                                <div class="btn_added">
+                                    <input class="minus is-form" type="button" value="-">
+                                    <input id="add-to-cart-btn" aria-label="quantity" class="input-qty" max="10" min="1"
+                                        name="" type="number" value="1">
+                                    <input class="plus is-form" type="button" value="+">
+                                </div>
+                                <script>
+                                    $('input.input-qty').each(function () {
+                                        var $this = $(this),
+                                            qty = $this.parent().find('.is-form'),
+                                            min = Number($this.attr('min')),
+                                            max = Number($this.attr('max'))
+                                        if (min == 0) {
+                                            var d = 0
+                                        } else d = min
+                                        $(qty).on('click', function () {
+                                            if ($(this).hasClass('minus')) {
+                                                if (d > min) d += -1
+                                            } else if ($(this).hasClass('plus')) {
+                                                var x = Number($this.val()) + 1
+                                                if (x <= max) d += 1
+                                            }
+                                            $this.attr('value', d).val(d)
+                                            localStorage.setItem('newqty', d);
+                                        })
+                                    })
+                                </script>
+                                <div class="add_to_cart_btn add-cart">
+                                    <a onclick="addToCart(this)">THÊM VÀO GIỎ HÀNG</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product_tab">
+                        <ul class="tabs_title" style="display: flex;">
+                            <li class="tab_link active tab1 col-xs-12 col-sm-4">
+                                <h3 onclick="showTab1()"><a>Mô tả</a></h3>
+                            </li>
+                            <li class="tab_link tab2 col-xs-12 col-sm-4">
+                                <h3 onclick="showTab2()"><a>Hướng dẫn mua hàng</a></h3>
+                            </li>
+                        </ul>
+                        <div class="tab_float">
+                            <div class="tab_1">
+
+                            </div>
+                            <div class="tab_2">
+                                <p>Bước 1: Tìm sản phẩm cần mua Bạn có thể truy cập website để tìm và chọn sản phẩm muốn
+                                    mua bằng nhiều cách:</p>
+                                <p>+ Sử dụng ô tìm kiếm phía trên, gõ tên sản phẩm muốn mua (có thể tìm đích danh 1 sản
+                                    phẩm, tìm theo hãng...). Website sẽ cung cấp cho bạn những gợi ý chính xác để lựa
+                                    chọn:</p>
+                                <p>Bước 2: Đặt mua sản phẩm Sau khi chọn được sản phẩm ưng ý muốn mua, bạn tiến hành đặt
+                                    hàng bằng cách:</p>
+                                <p>+ Chọn vào nút MUA NGAY nếu bạn muốn thanh toán luôn toàn bộ giá tiền sản phẩm</p>
+                                <p>+ Điền đầy đủ các thông tin mua hàng theo các bước trên website, sau đó chọn hình
+                                    thức nhận hàng là giao hàng tận nơi hay đến siêu thị lấy hàng, chọn hình thức thanh
+                                    toán là trả khi nhận hàng hay thanh toán online (bằng thẻ ATM, VISA hay MasterCard)
+                                    và hoàn tất đặt hàng.</p>
+                                <p>+ Lưu ý:</p>
+                                <p>1. Chúng tôi chỉ chấp nhận những đơn đặt hàng khi cung cấp đủ thông tin chính xác về
+                                    địa chỉ, số điện thoại. Sau khi bạn đặt hàng, chúng tôi sẽ liên lạc lại để kiểm tra
+                                    thông tin và thỏa thuận thêm những điều có liên quan.</p>
+                                <p>2. Một số trường hợp nhạy cảm: giá trị đơn hàng quá lớn & thời gian giao hàng vào
+                                    buổi tối, địa chỉ giao hàng trong ngõ hoặc có thể dẫn đến nguy hiểm. Chúng tôi sẽ
+                                    chủ động liên lạc với quý khách để thống nhất lại thời gian giao hàng cụ thể.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-3 intro">
+                    <h4>GIỚI THIỆU</h4>
+                    <p>Đến với Dekor, bạn hoàn toàn yên tâm để chọn được cho mình một bộ nội thất phù hợp nhất, kết hợp
+                        đầy đủ, hài hòa các yếu tố về màu sắc, kiểu dáng, kích thước để làm cho không gian ngôi nhà bạn
+                        trở nên ấn tượng hơn!</p>
+                    <ul>
+                        <li><a href=""><i class="ti-facebook"></i></a></li>
+                        <li><a href=""><i class="ti-twitter"></i></a></li>
+                        <li><a href=""><i class="ti-email"></i></a></li>
+                        <li><a href=""><i class="ti-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3 policy news">
+                    <h4>CHÍNH SÁCH</h4>
+                    <div class="news_item row"
+                        style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách bảo hành
+                    </div>
+                    <div class="news_item row"
+                        style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách bảo mật
+                    </div>
+                    <div class="news_item row"
+                        style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách đổi trả
+                    </div>
+                    <div class="news_item row"
+                        style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách giao hàng
+                    </div>
+                    <div class="news_item row"
+                        style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+                        <span>●</span>
+                        Chính sách thanh toán
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-6 col-lg-3 addr">
+                    <h4>ĐỊA CHỈ LIÊN HỆ</h4>
+                    <p><i class="fas fa-location-dot"></i>Đường Số 1, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                    <p class="phone_num"><i class="fas fa-phone"></i><a href="">+84 123 456 789</a></p>
+                    <p>
+                    <form class="form">
+                        <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+                        <button type="button" class="asd btn btn-primary ">Gửi</button>
+                    </form>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3 news">
+                    <h4>TIN MỚI</h4>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../../../SanPham/img/news/news_1.png">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../../../header/TinTuc1.html">Bí quyết bảo quản nội thất gỗ</a></h5>
+                            <p>11/11/2022</p>
+                        </div>
+                    </div>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../../../SanPham/img/news/news_2.png">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../../../header/Tintuc2.html">Kinh nghiệm mua, bảo quản nội thất</a></h5>
+                            <p>11/11/2022</p>
+                        </div>
+                    </div>
+                    <div class="news_item row">
+                        <div class="col-2 news_img">
+                            <img src="../../../../SanPham/img/news/news_3.png" alt="">
+                        </div>
+                        <div class="col-9 news_info">
+                            <h5><a href="../../../../header/Tintuc3.html">Bố trí nội thất, cần tránh những gì ?</a></h5>
+                            <p>11/11/2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../../../js/data.js"></script>
+    <script>
+        function getBasePath() {
+            const pathArray = window.location.pathname.split('/');
+            const facilityIndex = pathArray.indexOf('Facility');
+
+            if (facilityIndex !== -1) {
+                // Tạo basePath tới 'SanPham/html' từ 'Facility'
+                const basePath = pathArray.slice(0, facilityIndex + 1).join('/');
+                return window.location.origin + basePath;
+            } else {
+                // Trường hợp không tìm thấy 'Facility'
+                console.warn("Không tìm thấy thư mục 'Facility' trong URL.");
+                return window.location.origin;
+            }
+        }
+        function viewDetailProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'), 10);
+
+            const product = products.find(item => item.id === productId);
+
+            if (product) {
+                document.getElementById('add-to-cart-btn').setAttribute('data-image', product.image.lenght > 100?  product.image : getBasePath() + product.image);
+                const product_imageHTML = `<img src="${product.image.length > 100?  product.image : getBasePath() + product.image}">`;
+                const product_detailHTML = `
+            <h1 class="title_product">${product.title}</h1>
+            <div class="price_box">
+                <span>${product.price.toLocaleString("vi-VN")}<u>đ</u></span>
+            </div>
+            <div class="info_product">
+                <div class="status">
+                    <span class="a_name">Thương hiệu:</span>
+                    <span class="status_name">First Impression</span>
+                </div>
+                <div class="status">
+                    Tình trạng:
+                    <span class="status_name">Còn hàng</span>
+                </div>
+            </div>
+        `;
+                product.description = product.description.trim().split('\n');
+                const product_descriptionHTML = product.description.map(para => {
+                    if (para.trim().startsWith('<img')) {
+                        return para.trim();
+                    }
+                    return `<p>${para.trim()}</p>`;
+                }).join('');
+
+                document.getElementsByClassName('add-cart')[0].id = product.id;
+                document.getElementById('product-image').innerHTML = product_imageHTML;
+                document.querySelector('.details_pro').innerHTML = product_detailHTML;
+                document.querySelector('.tab_1').innerHTML = product_descriptionHTML;
+                document.title = product.title;
+                document.getElementById('name-category').innerHTML = `<a href="javascript:void(0)" onclick='updateUrl(["${product.category}"], [])'>${product.category}</a>`;
+                document.getElementById('name-product').textContent = product.title;
+            } else {
+                console.error('Sản phẩm không tồn tại');
+            }
+        }
+
+
+        viewDetailProduct();
+        function showTab1() {
+            document.querySelector(".tab_1").style.display = "inline-block";
+            document.querySelector(".tab_2").style.display = "none";
+            $('.tab1').addClass('active');
+            $('.tab2').removeClass('active');
+        }
+
+        function showTab2() {
+            document.querySelector(".tab_1").style.display = "none";
+            document.querySelector(".tab_2").style.display = "inline-block";
+            $('.tab2').addClass('active');
+            $('.tab1').removeClass('active');
+        }
+
+    </script>
+    <script src="../../../js/icon_cart.js"></script>
+    <script src="../../../js/account.js"></script>
+    <script>
+        function updateUrl(categories, brands) {
+            const encodedCategories = (JSON.stringify(categories));
+            const encodedBrands = (JSON.stringify(brands));
+
+            const url = new URL(getBasePath() + '/SanPham/html/category/product.html');
+            url.searchParams.set('categories', encodedCategories);
+            url.searchParams.set('brands', encodedBrands);
+
+            window.location.href = url.toString();
+        }
+
+        function renderTopSellingProducts() {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const productCounts = {};
+            orders.forEach(order => {
+                order.products.forEach(product => {
+                    if (!productCounts[product.id]) {
+                        productCounts[product.id] = { ...product, count: 0 };
+                    }
+                    productCounts[product.id].count += product.quantity;
+                });
+            });
+
+            const sortedProducts = Object.values(productCounts).sort((a, b) => b.count - a.count);
+
+            const topProducts = sortedProducts.slice(0, 5);
+
+            const hotProductContainer = document.getElementById('hot-product');
+            hotProductContainer.innerHTML = '';
+
+            topProducts.forEach(product => {
+                const productHTML = `
+            <div class="hot_item row">
+                <div class="col-4">
+                    <img src="${product.image.length > 100 ? product.image : getBasePath() + product.image}" alt="${product.title}">
+                </div>
+                <div class="col-8">
+                    <h5><a href="${getBasePath()}/SanPham/html/category/detail_item/product_detail.html?id=${product.id}">${product.title}</a></h5>
+                    <p>${product.price.toLocaleString()}<u>đ</u></p>
+                </div>
+            </div>
+        `;
+                hotProductContainer.insertAdjacentHTML('beforeend', productHTML);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderTopSellingProducts);
+
+    </script>
+</body>
+
+</html>

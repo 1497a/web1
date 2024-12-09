@@ -592,6 +592,17 @@
 
 #myInput {
     position: relative;
+    width: 280px;
+    border: none;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    padding: 0 0 0 12px;
+}
+
+.search-btn{
+    border-radius: 0;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
 }
 
 #myUL {
@@ -622,5 +633,7 @@
 
 .mb-2 {
     margin-bottom: 0%!important;
-    ;
+    margin-right: 10px !important;
+    width:440px;
 }
+

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo Trang Thanh Toán</title>
+    <title>Tài khoản của tôi</title>
     <link rel="stylesheet" href="../../SanPham/fontawesome-free-6.2.0-web/css/all.css">
     <link rel="stylesheet" href="../../SanPham/bootstrap-5.2.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../SanPham/font_Roboto/Roboto-Bold.ttf">
     <link rel="stylesheet" href="../../css/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="../../SanPham/css/product.css">
-    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../SanPham/js/jquery.min.js"></script>
+    <script src="../..//SanPham/js/jquery.min.js"></script>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../style.js"></script>
     <link rel="stylesheet" href="../../css/cart.css">
-    <link rel="stylesheet" href="../../css/checkout.css">
+    <link rel="stylesheet" href="../css/accountInfo.css">
+
+</head>
 </head>
 <style>
     .form-group .input-wrapper .dropdown {
@@ -41,7 +44,66 @@
         padding: 10px;
         width: 300px;
     }
-</style>
+
+    .container-order {
+        display: flex;
+        width: 80%;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    .sidebar {
+        width: 250px;
+        /* background-color: #fff; */
+        padding: 20px;
+        /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); */
+        height: 100vh;
+    }
+
+    .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .user-name p {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .user-name a {
+        font-size: 14px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .menu-item {
+        text-decoration: none;
+        color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-bottom: 10px;
+        /* Thêm khoảng cách giữa các mục */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu-item:hover {
+        background-color: #f0f0f0;
+    }
+
+    .menu-item.active {
+        color: blue;
+    }
 </style>
 
 <body>
@@ -122,8 +184,8 @@
                         </li>
                     </ul>
                     <form class="d-flex display: block">
-                        <input class="search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput"
-                            onkeyup="myFunction()">
+                        <input class="form-control search-input" type="text" placeholder="Tìm" aria-label="Search"
+                            id="myInput" onkeyup="myFunction()">
                         <ul id="myUL" class="list-group searchInput mt-1">
                             <li><a href="../../SanPham/html/category/detail_item/Ban/ban2.html"
                                     class="list-group-item list-group-item-action">bàn GTY 091</a></li>
@@ -147,7 +209,6 @@
                         <button class="btn btn-primary search-btn" type="button" onclick="redirectToProductPage()"><span
                                 class="ti-search"></span></button>
                     </form>
-
                     <div class="icon-user">
                         <li class="nav-item dropdown">
                             <a class="fas fa-user nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -173,176 +234,91 @@
             </div>
         </nav>
     </header>
-    <main>
 
-        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <div class="container">
-
-            <div class="py-5 text-center">
-                <p class="lead" style="color: red;">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi
-                    Đặt hàng.</p>
-            </div>
-
-            <form class="needs-validation" name="frmthanhtoan" action="../../SanPham/html/thanks.html">
-                <div class="row">
-                    <div class="col-md-4 order-md-2 mb-4">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <a href="../../SanPham/html/cart.html"><span>TỔNG SẢN PHẨM: </span></a>
-                            <a href="../../SanPham/html/cart.html" title="Mua hàng" class="cart1 ">
-                                <span>0</span>
-                            </a>
-                        </h4>
-                        <div class="col-25 ">
-                            <ul class="list-group mb-3 ">
-                                <div class="input-checkout ">
-
-                                </div>
-                            </ul>
-                        </div>
-
-                        <div class="input-group ">
-                            <input type="text " class="form-control " placeholder="Mã khuyến mãi ">
-                            <div class="input-group-append ">
-                                <button type="submit " class="btn btn-secondary ">Xác nhận</button>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-md-8 order-md-1">
-                        <h4 class="mb-3">THÔNG TIN KHÁCH HÀNG</h4>
-                        <div class="user-infor">
-                            <!-- Thông tin khách hàng -->
-                        </div>
-
-                        <h4 style="margin-top: 30px;">Hình Thức Thanh Toán</h4>
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                    value="Thanh toán tiền mặt" onclick="togglePaymentForm()">
-                                <label class="custom-control-label" for="httt-2">Thanh toán tiền mặt</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="httt-3" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                    value="Chuyển khoản" onclick="togglePaymentForm()">
-                                <label class="custom-control-label" for="httt-3">Chuyển khoản</label>
-                            </div>
-
-                            <!-- Form nhập thông tin chuyển khoản ngân hàng -->
-                            <div id="bankTransferForm"
-                                style="width:60%; display: block; overflow: hidden; height: 0; transition: height 0.5s ease-in-out;">
-                                <h5>Thông Tin Chuyển Khoản Ngân Hàng</h5>
-                                <div class="form-group">
-                                    <label for="bankName">Tên Ngân Hàng</label>
-                                    <select class="form-control" id="bankName" required>
-                                        <option value="">Chọn ngân hàng</option>
-                                        <option value="Vietcombank">Vietcombank</option>
-                                        <option value="BIDV">BIDV</option>
-                                        <option value="VietinBank">VietinBank</option>
-                                        <option value="Agribank">Agribank</option>
-                                        <option value="Techcombank">Techcombank</option>
-                                        <option value="Sacombank">Sacombank</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bankAccount">Số Tài Khoản</label>
-                                    <input type="text" class="form-control" id="bankAccount"
-                                        placeholder="Nhập số tài khoản ngân hàng" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="bankTransferDate">Ngày Chuyển Khoản</label>
-                                    <input type="date" class="form-control" id="bankTransferDate" required>
-                                </div>
-                            </div>
-
-                            <div class="custom-control custom-radio">
-                                <input id="httt-4" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                    value="Thanh toán qua thẻ" onclick="togglePaymentForm()">
-                                <label class="custom-control-label" for="httt-4">Thanh toán qua thẻ</label>
-                            </div>
-                        </div>
-
-                        <!-- Form nhập thông tin thẻ tín dụng -->
-                        <div id="creditCardForm"
-                            style="width: 60%; display: block; overflow: hidden; height: 0; transition: height 0.5s ease-in-out;">
-                            <h5>Thông Tin Thẻ Tín Dụng</h5>
-                            <div class="form-group">
-                                <label for="cardNumber">Số Thẻ</label>
-                                <input type="text" class="form-control" id="cardNumber" placeholder="Nhập số thẻ"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="expiryDate">Ngày Hết Hạn</label>
-                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cvv">Mã CVV</label>
-                                <input type="text" class="form-control" id="cvv" placeholder="Nhập mã CVV" required>
-                            </div>
-                        </div>
-
-
-                        <button class="btn btn-primary btn-lg btn-block" type="button" name="btnDatHang"
-                            onclick="placeOrder();resetCart();">Mua hàng</button>
-                        <hr>
-                    </div>
-
-                    <script>
-                        // Hàm để hiển thị/ẩn các form nhập thông tin thanh toán (thẻ tín dụng và chuyển khoản ngân hàng)
-                        function togglePaymentForm() {
-                            var creditCardForm = document.getElementById("creditCardForm");
-                            var bankTransferForm = document.getElementById("bankTransferForm");
-
-                            // Kiểm tra xem phương thức thanh toán là "Thanh toán qua thẻ"
-                            if (document.getElementById("httt-4").checked) {
-                                creditCardForm.style.display = "block"; // Hiển thị form thẻ tín dụng
-                                setTimeout(function () {
-                                    creditCardForm.style.height = "auto"; // Mở rộng chiều cao của form
-                                }, 50); // Đảm bảo có độ trễ nhỏ để transition có thể xảy ra
-                            } else {
-                                creditCardForm.style.height = "0"; // Thu gọn chiều cao của form
-                                setTimeout(function () {
-                                    creditCardForm.style.display = "none"; // Ẩn form thẻ tín dụng sau khi hoàn thành hiệu ứng
-                                }, 50); // Thời gian delay để đợi hiệu ứng hoàn thành
-                            }
-
-                            // Kiểm tra xem phương thức thanh toán là "Chuyển khoản"
-                            if (document.getElementById("httt-3").checked) {
-                                bankTransferForm.style.display = "block"; // Hiển thị form chuyển khoản
-                                setTimeout(function () {
-                                    bankTransferForm.style.height = "auto"; // Mở rộng chiều cao của form
-                                }, 50); // Đảm bảo có độ trễ nhỏ để transition có thể xảy ra
-
-                                // Lấy ngày hiện tại và gán vào trường ngày chuyển khoản
-                                var today = new Date();
-                                var day = ("0" + today.getDate()).slice(-2); // Đảm bảo ngày có 2 chữ số
-                                var month = ("0" + (today.getMonth() + 1)).slice(-2); // Tháng từ 0-11, cộng 1 để đúng tháng
-                                var year = today.getFullYear();
-                                var formattedDate = year + "-" + month + "-" + day; // Định dạng ngày thành YYYY-MM-DD
-
-                                // Gán ngày hiện tại vào trường ngày chuyển khoản
-                                document.getElementById("bankTransferDate").value = formattedDate;
-                            } else {
-                                bankTransferForm.style.height = "0"; // Thu gọn chiều cao của form
-                                setTimeout(function () {
-                                    bankTransferForm.style.display = "none"; // Ẩn form chuyển khoản sau khi hoàn thành hiệu ứng
-                                }, 50); // Thời gian delay để đợi hiệu ứng hoàn thành
-                            }
-                        }
-                    </script>
-
-
-
-
+    <div class="container-order">
+        <!-- Thanh menu bên trái -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_2x3.jpg"
+                    alt="Avatar" class="avatar">
+                <div class="user-name">
+                    <p></p>
                 </div>
+            </div>
+            <div class="menu-items">
+                <a href="./accountInfo.html" class="menu-item active"><span class="icon">👤</span> Tài Khoản Của Tôi</a>
+                <a href="./user_order.html" class="menu-item"><span class="icon">📋</span> Đơn Mua</a>
+            </div>
         </div>
-        </form>
+        <!-- Phần lịch sử đơn hàng -->
+        <div class="profile-container">
+            <h4>Hồ Sơ Của Tôi</h4>
+            <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+
+            <form id="accountForm">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" id="username" value="" disabled>
+                    <small class="form-message" id="username-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Tên</label>
+                    <input type="text" id="name" value="">
+                    <small class="form-message" id="name-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="">
+                    <small class="form-message" id="email-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" id="phone" value="">
+                    <small class="form-message" id="phone-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" value="" disabled>
+                    <small class="form-message" id="password-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="adress">Địa chỉ</label>
+                    <div class="input-wrapper" style="width: 40%;">
+                        <input style="width: 100%;padding: 10px;" type="text" class="form-control" name="address"
+                            id="address" value="">
+                        <div id="addressDropdown" class="dropdown"></div>
+                        <div id="districtDropdown" class="dropdown"></div>
+                        <div id="wardDropdown" class="dropdown"></div>
+                    </div>
+                    <small class="form-message" id="address-error"></small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Giới tính</label>
+                    <div class="checkbox-gender">
+                        <label class="label-gender"><input type="radio" name="gender" value="Nam"> Nam</label>
+                        <label class="label-gender"><input type="radio" name="gender" value="Nữ"> Nữ</label>
+                    </div>
+                    <small class="form-message" id="gender-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Ngày sinh</label>
+                    <input type="date" id="dob" value="">
+                    <small class="form-message" id="dob-error"></small>
+                </div>
+
+                <button type="button" class="save-button" onclick="saveUserInfo()">Lưu</button>
+            </form>
+
 
         </div>
-
-
-    </main>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -433,10 +409,9 @@
             </div>
         </div>
     </footer>
-    <script src="../../SanPham/js/checkout.js"></script>
-    <script src="../../SanPham/js/icon_cart.js"></script>
+    <!--Kết Thúc Phần Nội Dung-->
+    <script src="../../SanPham/js/data.js"></script>
     <script src="../../SanPham/js/account.js"></script>
-    <script src="../../SanPham/js/product.js"></script>
     <script>
         function updateUrl(categories, brands) {
             // Mã hóa categories và brands thành chuỗi JSON và sau đó mã hóa URL
@@ -453,7 +428,179 @@
         }
 
 
+        function populateProfile() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const loggedInUser = users.find(user => user.isSignIn === 1); // Kiểm tra user đang đăng nhập
 
+            if (!loggedInUser) {
+                console.error("Không có user nào đang đăng nhập!");
+                return;
+            }
+
+            // Lấy các phần tử input và điền thông tin của user vào
+            document.getElementById('username').value = loggedInUser.username || '';  // Tên đăng nhập
+            document.getElementById('name').value = loggedInUser.name || '';  // Tên
+            document.getElementById('email').value = loggedInUser.account || '';  // Email
+            document.getElementById('phone').value = loggedInUser.phone || '';  // Số điện thoại
+            document.getElementById('address').value = loggedInUser.address || '';  // Số điện thoại
+            document.getElementById('password').value = loggedInUser.password || '';  // Số điện thoại
+            document.querySelector(".user-name p").innerHTML = loggedInUser.name
+            console.log(document.querySelector(".user-name p"));
+            if (loggedInUser.birthdate) {
+                const date = new Date(loggedInUser.birthdate); // Chuyển chuỗi thành Date
+                const formattedDate = date.toISOString().split('T')[0]; // Chuyển sang YYYY-MM-DD
+                document.getElementById('dob').value = formattedDate; // Gán giá trị cho input kiểu date
+            } else {
+                document.getElementById('dob').value = ''; // Nếu không có ngày sinh
+            }
+
+
+            // Giới tính
+            if (loggedInUser.gender) {
+                const genderRadio = document.querySelector(`input[name="gender"][value="${loggedInUser.gender}"]`);
+                if (genderRadio) {
+                    genderRadio.checked = true;
+                }
+
+                if (loggedInUser.gender === "Nữ") {
+                    document.querySelector(".avatar").src = "../../img/avatar-mac-dinh-facebook-nu.jpg";
+                }
+                if (loggedInUser.gender === "Nam") {
+                    document.querySelector(".avatar").src = "../../img/avatar-mac-dinh-nam.jpg";
+                }
+            }
+            setupAddressDropdown("address");
+        }
+
+
+
+        function updateCartIcon(cart) {
+            const cartIcon = document.querySelector(".cart li span");
+            if (cartIcon) {
+                const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+                cartIcon.innerText = totalQuantity;
+            }
+        }
+
+
+        window.onload = function () {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const currentUser = users.find(user => user.isSignIn === 1);
+            if (currentUser) {
+                updateCartIcon(currentUser.cart);
+                populateProfile();
+            }
+        };
+
+        function validateAccountForm() {
+            let isValid = true;
+
+            // Xóa các thông báo lỗi cũ
+            const errorMessages = document.querySelectorAll(".form-message");
+            errorMessages.forEach(msg => msg.textContent = "");
+
+            // Kiểm tra tên
+            const name = document.getElementById("name").value;
+            if (name === "") {
+                document.getElementById("name-error").textContent = "Tên không được để trống!";
+                isValid = false;
+            }
+
+            // Kiểm tra email
+            const email = document.getElementById("email").value;
+            if (email === "") {
+                document.getElementById("email-error").textContent = "Email không được để trống!";
+                isValid = false;
+            } else if (!/^[a-zA-Z0-9]+@gmail\.com$/.test(email)) {
+                document.getElementById("email-error").textContent = "Email không hợp lệ!";
+                isValid = false;
+            } else if (isEmailExist(email)) {
+                document.getElementById("email-error").textContent = "Email đã tồn tại!";
+                isValid = false;
+            }
+
+            // Kiểm tra số điện thoại
+            const phone = document.getElementById("phone").value;
+            if (phone === "") {
+                document.getElementById("phone-error").textContent = "Số điện thoại không được để trống!";
+                isValid = false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phone-error").textContent = "Số điện thoại phải có 10 chữ số!";
+                isValid = false;
+            }
+
+            // Kiểm tra địa chỉ
+            const address = document.getElementById("address").value;
+            if (address === "") {
+                document.getElementById("address-error").textContent = "Địa chỉ không được để trống!";
+                isValid = false;
+            }
+
+            // Kiểm tra giới tính
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                document.getElementById("gender-error").textContent = "Bạn phải chọn giới tính!";
+                isValid = false;
+            }
+
+            // Kiểm tra ngày sinh
+            const dob = document.getElementById("dob").value;
+            if (dob === "") {
+                document.getElementById("dob-error").textContent = "Ngày sinh không được để trống!";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function isEmailExist(email) {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Tìm người dùng hiện tại (isSignIn = 1)
+            const currentUser = users.find(user => user.isSignIn === 1);
+
+            // Kiểm tra xem email có trùng với email của người dùng hiện tại không, nếu có thì bỏ qua
+            return users.some(user => user.account === email && user.account !== currentUser?.account);
+        }
+
+
+
+        function saveUserInfo() {
+            const username = document.getElementById("username").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
+            const birthdate = document.getElementById("dob").value;
+            const password = document.getElementById("password").value;  // Password không thay đổi vì disabled
+
+            // Kiểm tra tính hợp lệ
+            if (!validateAccountForm()) return; // Nếu không hợp lệ thì không tiếp tục
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Tìm người dùng hiện tại
+            const currentUser = users.find(user => user.username === username);
+
+            if (currentUser) {
+                // Cập nhật thông tin người dùng
+                currentUser.name = name;
+                currentUser.account = email;
+                currentUser.phone = phone;
+                currentUser.address = address;
+                currentUser.gender = gender;
+                currentUser.birthdate = birthdate;
+
+                // Cập nhật lại vào localStorage
+                localStorage.setItem("users", JSON.stringify(users));
+
+                alert("Cập nhật thông tin thành công!");
+                populateProfile();  // Cập nhật giao diện với thông tin mới
+            } else {
+                alert("Không tìm thấy tài khoản để cập nhật.");
+            }
+        }
     </script>
 </body>
 

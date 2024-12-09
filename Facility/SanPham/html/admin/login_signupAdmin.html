@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="../../css/admin.css" />
+  <link rel="stylesheet" href="../../fontawesome-free-6.2.0-web/css/all.css" />
+  <link rel="stylesheet" href="../../bootstrap-5.2.2-dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../font_Roboto/Roboto-Bold.ttf" />
+  <link rel="stylesheet" href="../../../css/themify-icons/themify-icons.css" />
+  <link rel="stylesheet" href="../../css/product.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../../../css/style.css" />
+  <script src="../../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="../../../style.js"></script>
+  <link rel="stylesheet" href="../../../css/cart.css" />
+  <title>Admin</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+    }
+
+    .login-container {
+      margin: auto;
+      display: flex;
+      vertical-align: middle;
+      background: #ffffff;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+      /* Tăng độ mờ và giảm độ trong suốt */
+      border-radius: 8px;
+      overflow: hidden;
+      width: 60%;
+      margin-top: 120px;
+      height: 400px;
+    }
+
+    form {
+      padding: 0 30px 0 30px !important;
+    }
+
+    .login-image {
+      width: 50%;
+      background: url("https://noithatchauanh.com/uploaded/Thiet-ke-noi-that-biet-thu-go-oc-cho-1-1_1.jpg") no-repeat center center/cover;
+    }
+
+    .login-form {
+      position: relative;
+      width: 50%;
+      padding: 20px;
+      overflow-x: auto;
+      overflow-y: auto;
+      max-height: 100vh;
+      box-sizing: border-box;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .form-container {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .form-container.active {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #toggleFormText {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    #formTitle {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-form h4 {
+      margin-bottom: 30px;
+      color: #bb0000;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      margin-top: 30px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #001c40;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+
+    .message-error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: block;
+      height: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top">
+      <div class="tab_menu">
+        <img style="margin: 10px 0 0 20px" src="../../../img/logo.webp" alt="" />
+      </div>
+    </div>
+  </header>
+
+  <div class="login-container">
+    <div class="login-image"></div>
+    <div class="login-form">
+      <h4 id="formTitle">ĐĂNG NHẬP</h4>
+
+      <!-- Form đăng nhập -->
+      <form id="loginForm" class="form-container">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required />
+          <span class="message-error" id="usernameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+          <span class="message-error" id="passwordError"></span>
+        </div>
+        <div class="form-group">
+          <button type="button" onclick="validateLogin()">Đăng nhập</button>
+        </div>
+      </form>
+
+      <!-- Form đăng ký -->
+      <form id="registerForm" class="form-container">
+        <div class="form-group">
+          <label for="newUsername">Tên tài khoản</label>
+          <input type="text" id="newUsername" name="newUsername" placeholder="Nhập tên tài khoản" required />
+          <span class="message-error" id="newUsernameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="newName">Họ tên</label>
+          <input type="text" id="newName" name="newName" placeholder="Nhập tên tài khoản" required />
+          <span class="message-error" id="newNameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Nhập email" required />
+          <span class="message-error" id="emailError"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required />
+          <span class="message-error" id="phoneError"></span>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Mật khẩu</label>
+          <input type="password" id="registerPassword" name="registerPassword" placeholder="Nhập mật khẩu" required />
+          <span class="message-error" id="registerPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Xác nhận mật khẩu</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required />
+          <span class="message-error" id="confirmPasswordError"></span>
+        </div>
+        <div class="form-group">
+          <button type="button" onclick="validateRegister()">Đăng ký</button>
+        </div>
+      </form>
+
+      <div style="text-align: center">
+        <span id="toggleFormText" style="cursor: pointer">Chưa có tài khoản admin? ĐĂNG KÝ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------- Script ----------------------- -->
+  <script src="../../bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/data.js"></script>
+  <script>
+    function validateLogin() {
+      // Lấy giá trị của các input
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // Lấy các phần tử hiển thị lỗi
+      const usernameError = document.getElementById("usernameError");
+      const passwordError = document.getElementById("passwordError");
+
+      let isValid = true;
+
+      // Kiểm tra tên đăng nhập
+      if (username === "") {
+        usernameError.textContent = "Tên đăng nhập không được để trống!";
+        usernameError.style.display = "block";
+        isValid = false;
+      }
+
+      // Kiểm tra mật khẩu
+      if (password === "") {
+        passwordError.textContent = "Mật khẩu không được để trống!";
+        passwordError.style.display = "block";
+        isValid = false;
+      }
+
+      // Nếu hợp lệ, kiểm tra tài khoản trong localStorage
+      if (isValid) {
+        // Lấy mảng admins từ localStorage
+        const admins = JSON.parse(localStorage.getItem("admins")) || [];
+
+        // Kiểm tra xem có tài khoản nào hợp lệ không
+        const admin = admins.find(
+          (admin) =>
+            admin.username === username && admin.password === password
+        );
+
+        if (admin) {
+          admin.isSignIn = 1;
+          localStorage.setItem("admins", JSON.stringify(admins));
+          // Nếu có tài khoản hợp lệ, chuyển hướng đến trang admin
+          window.location.href = "./admin.html";
+        } else {
+          // Nếu không có tài khoản hợp lệ
+          passwordError.textContent =
+            "Tên đăng nhập hoặc mật khẩu không đúng!";
+        }
+      }
+    }
+
+    function validateRegister() {
+      // Lấy giá trị của các input
+      const newUsername = document.getElementById("newUsername").value.trim();
+      const newName = document.getElementById("newName").value.trim(); // Trường họ tên
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const registerPassword = document
+        .getElementById("registerPassword")
+        .value.trim();
+      const confirmPassword = document
+        .getElementById("confirmPassword")
+        .value.trim();
+
+      // Lấy các phần tử hiển thị lỗi
+      const newUsernameError = document.getElementById("newUsernameError");
+      const newNameError = document.getElementById("newNameError"); // Lỗi họ tên
+      const emailError = document.getElementById("emailError");
+      const phoneError = document.getElementById("phoneError");
+      const registerPasswordError = document.getElementById(
+        "registerPasswordError"
+      );
+      const confirmPasswordError = document.getElementById(
+        "confirmPasswordError"
+      );
+
+      let isValid = true;
+
+      // Kiểm tra tên đăng nhập
+      if (newUsername === "") {
+        newUsernameError.textContent = "Tên đăng nhập không được để trống!";
+        newUsernameError.style.display = "block";
+        isValid = false;
+      } else {
+        newUsernameError.style.display = "none";
+      }
+
+      // Kiểm tra họ tên
+      if (newName === "") {
+        newNameError.textContent = "Họ tên không được để trống!";
+        newNameError.style.display = "block";
+        isValid = false;
+      } else {
+        newNameError.style.display = "none";
+      }
+
+      // Kiểm tra email
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (email === "") {
+        emailError.textContent = "Email không được để trống!";
+        emailError.style.display = "block";
+        isValid = false;
+      } else if (!emailRegex.test(email)) {
+        emailError.textContent = "Email không hợp lệ!";
+        emailError.style.display = "block";
+        isValid = false;
+      } else {
+        emailError.style.display = "none";
+      }
+
+      // Kiểm tra số điện thoại
+      const phoneRegex = /^[0-9]{10}$/;
+      if (phone === "") {
+        phoneError.textContent = "Số điện thoại không được để trống!";
+        phoneError.style.display = "block";
+        isValid = false;
+      } else if (!phoneRegex.test(phone)) {
+        phoneError.textContent = "Số điện thoại không hợp lệ!";
+        phoneError.style.display = "block";
+        isValid = false;
+      } else {
+        phoneError.style.display = "none";
+      }
+
+      // Kiểm tra mật khẩu
+      if (registerPassword === "") {
+        registerPasswordError.textContent = "Mật khẩu không được để trống!";
+        registerPasswordError.style.display = "block";
+        isValid = false;
+      } else if (registerPassword.length < 6) {
+        registerPasswordError.textContent =
+          "Mật khẩu phải có ít nhất 6 ký tự!";
+        registerPasswordError.style.display = "block";
+        isValid = false;
+      } else {
+        registerPasswordError.style.display = "none";
+      }
+
+      // Kiểm tra xác nhận mật khẩu
+      if (confirmPassword === "") {
+        confirmPasswordError.textContent = "Vui lòng xác nhận mật khẩu!";
+        confirmPasswordError.style.display = "block";
+        isValid = false;
+      } else if (confirmPassword !== registerPassword) {
+        confirmPasswordError.textContent = "Mật khẩu xác nhận không khớp!";
+        confirmPasswordError.style.display = "block";
+        isValid = false;
+      } else {
+        confirmPasswordError.style.display = "none";
+      }
+
+      // Nếu hợp lệ, kiểm tra xem tên tài khoản đã tồn tại trong localStorage chưa
+      if (isValid) {
+        const admins = JSON.parse(localStorage.getItem("admins")) || [];
+
+        // Kiểm tra xem tài khoản đã tồn tại chưa
+        const existingAdmin = admins.find(
+          (admin) => admin.username === newUsername
+        );
+
+        if (existingAdmin) {
+          newUsernameError.textContent = "Tên đăng nhập đã tồn tại!";
+          newUsernameError.style.display = "block";
+          isValid = false;
+        }
+
+        // Nếu không có lỗi, lưu tài khoản mới vào localStorage
+        if (isValid) {
+          const newAdmin = {
+            username: newUsername,
+            name: newName, // Lưu họ tên vào admin
+            email: email,
+            phone: phone,
+            password: registerPassword,
+            isSignIn: 0, // Chưa đăng nhập
+          };
+
+          admins.push(newAdmin); // Thêm admin mới vào mảng
+          localStorage.setItem("admins", JSON.stringify(admins)); // Lưu lại vào localStorage
+
+          swal("Thành công", "Đăng ký tài khoản thành công!", "success").then(
+            () => {
+              // Chuyển hướng đến trang đăng nhập
+              registerForm.classList.remove("active");
+              loginForm.classList.add("active");
+              formTitle.textContent = "ĐĂNG NHẬP"; // Cập nhật tiêu đề
+              document.getElementById("toggleFormText").textContent =
+                "Chưa có tài khoản admin? ĐĂNG KÝ"; // Cập nhật chuyển đổi
+            }
+          );
+        }
+      }
+    }
+
+    // Chuyển đổi giữa form đăng nhập và đăng ký
+    document
+      .getElementById("toggleFormText")
+      .addEventListener("click", function () {
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const formTitle = document.getElementById("formTitle");
+
+        // Kiểm tra nếu form đăng nhập đang hiển thị
+        if (loginForm.classList.contains("active")) {
+          // Ẩn form đăng nhập và hiển thị form đăng ký
+          loginForm.classList.remove("active");
+          registerForm.classList.add("active");
+          formTitle.textContent = "ĐĂNG KÝ"; // Cập nhật tiêu đề
+          document.getElementById("toggleFormText").textContent =
+            "Đã có tài khoản admin? ĐĂNG NHẬP"; // Cập nhật chuyển đổi
+        } else {
+          // Ẩn form đăng ký và hiển thị form đăng nhập
+          registerForm.classList.remove("active");
+          loginForm.classList.add("active");
+          formTitle.textContent = "ĐĂNG NHẬP"; // Cập nhật tiêu đề
+          document.getElementById("toggleFormText").textContent =
+            "Chưa có tài khoản admin? ĐĂNG KÝ"; // Cập nhật chuyển đổi
+        }
+      });
+
+    // Hiển thị form đăng nhập mặc định
+    document.getElementById("loginForm").classList.add("active");
+  </script>
+</body>
+
+</html>

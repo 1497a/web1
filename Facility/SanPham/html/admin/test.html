@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="priceRange">Lọc giá:</label>
+        <input type="range" id="priceRangeMin" min="0" max="5000" step="100" value="0" oninput="updatePriceLabels()">
+        <input type="range" id="priceRangeMax" min="0" max="5000" step="100" value="5000" oninput="updatePriceLabels()">
+        <span id="priceLabel">0 - 5000</span>
+        <button onclick="filterByPrice()">Lọc</button>
+    </div>
+    <script>
+        // Hàm cập nhật nhãn giá hiển thị
+function updatePriceLabels() {
+    const minPrice = document.getElementById('priceRangeMin').value;
+    const maxPrice = document.getElementById('priceRangeMax').value;
+    document.getElementById('priceLabel').textContent = `${minPrice} - ${maxPrice}`;
+}
+
+// Hàm lọc sản phẩm theo khoảng giá
+function filterByPrice() {
+    const minPrice = parseInt(document.getElementById('priceRangeMin').value, 10);
+    const maxPrice = parseInt(document.getElementById('priceRangeMax').value, 10);
+
+    const filteredProducts = products.filter(product => 
+        product.price >= minPrice && product.price <= maxPrice
+    );
+
+    console.log(filteredProducts); // Debug kết quả lọc
+    initializePagination(filteredProducts); // Hoặc render sản phẩm tùy ý
+}
+
+    </script>
+</body>
+</html>

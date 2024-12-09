@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../css/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="../../SanPham/fontawesome-free-6.2.0-web/css/all.css">
     <link rel="stylesheet" href="../../css/cart.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <title>deKor</title>
 </head>
 
@@ -27,7 +27,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 28em">
                         <li class="nav-item">
                             <a class="nav-link " href="../../Index.html">Trang chủ</a>
                         </li>
@@ -39,39 +39,23 @@
                   Sản Phẩm
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product.html">Tất Cả Sản Phẩm</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_ban.html">Bàn Gỗ</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_ke_sach.html">Kệ Sách</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_rem_cua.html">Rèm Cửa</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_sofa.html">Ghế Sofa</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_tu_quan_ao.html">Tủ Quần Áo</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_giuong_ngu.html">Giường Ngủ</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_phong_tam.html">Phòng Tắm</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="../../SanPham/html/category/product_den_trang_tri.html">Đèn trang trí</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["all"], [])'>Tất cả sản phẩm</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["Bàn gỗ"], [])'>Bàn Gỗ</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Kệ sách'], [])">Kệ Sách</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Rèm cửa'], [])">Rèm Cửa</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Ghế sofa'], [])">Ghế Sofa</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Tủ quần áo'], [])">Tủ Quần Áo</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Giường ngủ'], [])">Giường Ngủ</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Phòng tắm'], [])">Phòng Tắm</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Đèn trang trí'], [])">Đèn trang trí</a></li>
                 </ul>
                         </li>
                         <li class="nav-item">
@@ -82,7 +66,7 @@
                         </li>
                     </ul>
                     <form class="d-flex display: block">
-                        <input class="form-control me-2 search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput" onkeyup="myFunction()">
+                        <input class="form-control search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput" onkeyup="myFunction()">
                         <ul id="myUL" class="list-group searchInput mt-1">
                             <li><a href="../../SanPham/html/category/detail_item/Ban/ban2.html" class="list-group-item list-group-item-action">bàn GTY 091</a></li>
                             <li><a href="../../SanPham/html/category/detail_item/tu_quan_ao/tu2.html" class="list-group-item list-group-item-action">Tủ áo B1241K</a></li>
@@ -96,7 +80,7 @@
 
                         </ul>
 
-                        <button class="btn btn-primary search-btn" type="button"><span class="ti-search"></span></button>
+                        <button class="btn btn-primary search-btn" type="button" onclick="redirectToProductPage()"><span class="ti-search"></span></button>
                     </form>
                     <div class="icon-user">
                         <li class="nav-item dropdown">
@@ -115,6 +99,9 @@
                             </ul>
                         </li>
                     </div>
+                    <a href="./cart.html" title="Mua hàng" class="cart">
+                        <li class="fas fa-cart-shopping"><span>0</span></li>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -127,6 +114,26 @@
             <p class="lead">
                 <a class="btn btn-primary btn-sm" href="../../Index.html" role="button">Trở Về Trang Chủ</a>
     </main>
+    <script src="../../SanPham/js/product.js"></script>
+    <script src="../../SanPham/js/icon_cart.js"></script>
+    <script>
+        function updateUrl(categories, brands) {
+            // Mã hóa categories và brands thành chuỗi JSON và sau đó mã hóa URL
+            const encodedCategories = (JSON.stringify(categories));
+            const encodedBrands = (JSON.stringify(brands));
+            
+            // Cập nhật URL với các tham số mới
+            const url = new URL(getBasePath() + '/SanPham/html/category/product.html'); // Chuyển hướng đến trang sản phẩm
+            url.searchParams.set('categories', encodedCategories);
+            url.searchParams.set('brands', encodedBrands);
+            
+            // Chuyển hướng đến URL mới
+            window.location.href = url.toString();
+        }
+        
+                
+                
+                </script>
 </body>
 
 </html>

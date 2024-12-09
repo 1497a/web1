@@ -35,10 +35,6 @@ a {
     flex-wrap: wrap;
 }
 
-.row {
-    margin: 0;
-}
-
 
 /*---------- detail item ----------*/
 
@@ -68,38 +64,61 @@ a {
     font-size: 24px;
 }
 
+  /* Ẩn mũi tên tăng giảm trong trình duyệt Chrome, Edge */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+  /* Ẩn mũi tên tăng giảm trong Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+.flying-product {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    transition: all 0.8s ease-in-out;
+    pointer-events: none;
+}
+
+
 .info_product {
     font-size: 14px;
     padding: 15px 0 25px 0;
 }
 
-.form_btn_detail p {
-    font-size: 14px;
-    margin-bottom: 10px;
+.form_btn_detail {
+    display: flex;
+    align-items: center;
 }
 
 .add_to_cart_btn {
-    margin-bottom: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: #B71C1C; /* Màu nền tối */
+    color: #fff; /* Màu chữ trắng */
+    padding: 12px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px; /* Bo góc nhẹ */
+    text-decoration: none; /* Xóa gạch dưới của liên kết */
+    transition: background-color 0.3s ease; /* Chỉ chuyển màu nền khi hover */
+    cursor: pointer;
 }
 
-.add_to_cart_btn a {
-    background-color: #00000090;
-    color: #ffffff;
-    padding: 15px;
-    font-family: Roboto-Bold;
+.add_to_cart_btn:hover {
+    background-color: #D32F2F; /* Màu nền khi hover */
+    color: #fff; /* Màu chữ khi hover */
 }
 
-.add_to_cart_btn:hover a {
-    color: #e97777;
-}
-
-.add_to_cart_btn a:hover {
-    border: 2px solid #e97777;
-    background-color: #ffffff;
-}
 
 .btn_added {
-    margin-bottom: 30px;
     opacity: 1;
     display: inline-block;
     display: -ms-inline-flexbox;
@@ -157,7 +176,9 @@ a {
 /*---------- product tab ----------*/
 
 .product_tab {
+    min-height: 800px;
     padding: 0;
+    margin: 40px 0 40px 0;
 }
 
 .tab_link h3 {
@@ -186,10 +207,12 @@ a {
 .tab_float {
     font-size: 14px;
     padding-bottom: 20px;
+    max-height: auto;
 }
 
 .tab_float img {
-    width: 60%;
+    width: 30%;
+    height: auto;
 }
 
 .tab_1 {

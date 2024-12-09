@@ -2,246 +2,532 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Đơn Hàng</title>
-    <link rel="stylesheet" href="../../SanPham/fontawesome-free-6.2.0-web/css/all.css">
-    <link rel="stylesheet" href="../../SanPham/bootstrap-5.2.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../SanPham/font_Roboto/Roboto-Bold.ttf">
-    <link rel="stylesheet" href="../../css/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="../../SanPham/css/product.css">
-    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../SanPham/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/cart.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Đơn Hàng</title>
+  <link rel="stylesheet" href="../../SanPham/fontawesome-free-6.2.0-web/css/all.css">
+  <link rel="stylesheet" href="../../SanPham/bootstrap-5.2.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../SanPham/font_Roboto/Roboto-Bold.ttf">
+  <link rel="stylesheet" href="../../css/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="../../SanPham/css/product.css">
+  <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../SanPham/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/cart.css">
 </head>
+<style>
+  /* Cấu trúc container chung */
+  .container-order {
+    display: flex;
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  /* Thanh sidebar bên trái */
+  .sidebar {
+    width: 250px;
+    /* background-color: #fff; */
+    padding: 20px;
+    /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); */
+    height: 100vh;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .user-name p {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .user-name a {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .menu-item .icon {
+    font-size: 20px;
+  }
+
+  .order-history-container {
+    flex: 1;
+    padding: 20px;
+    margin-left: 20px;
+  }
+
+  .order-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-dates {
+    display: flex;
+    gap: 20px;
+  }
+
+  .order-status {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .status-icon {
+    margin-right: 10px;
+  }
+
+
+  /* Mã đơn hàng */
+  .order-id {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  /* Ngày đặt, ngày giao và địa chỉ */
+  .order-details {
+    margin-bottom: 20px;
+  }
+
+  .order-dates-and-address {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .order-dates-and-address p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  /* Button hủy đơn */
+  .order-actions {
+    text-align: right;
+    margin-top: 20px;
+  }
+
+  .cancel-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cancel-button:hover {
+    background-color: #d9363e;
+  }
+
+  .order-items {
+    margin-top: 20px;
+  }
+
+  .product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+
+  .product-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    flex: 1;
+  }
+
+  .product-price {
+    font-size: 14px;
+    color: #27ae60;
+    font-weight: bold;
+  }
+
+  .order-total {
+    margin-top: 20px;
+    text-align: right;
+  }
+
+  .order-total p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .order-address {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  button.cancel-button:disabled {
+    background-color: #ccc;
+    /* Màu nền nhạt khi vô hiệu */
+    color: #666;
+    /* Màu chữ nhạt */
+    cursor: not-allowed;
+    /* Con trỏ chuột đổi thành dấu X khi di chuột qua */
+    border: 1px solid #aaa;
+    /* Đường viền nhạt */
+  }
+
+  button.cancel-button:disabled:hover {
+    background-color: #ccc;
+    /* Không thay đổi nền khi hover */
+    color: #666;
+    /* Không thay đổi màu chữ khi hover */
+  }
+
+  .menu-item {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+    /* Thêm khoảng cách giữa các mục */
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .menu-item.active {
+    color: blue;
+  }
+
+  .status-pending {
+    color: orange;
+  }
+
+  .status-confirmed {
+    color: green;
+  }
+
+  .status-delivered {
+    color: blue;
+  }
+
+  .status-canceled {
+    color: red;
+  }
+
+  .status-icon {
+    margin-right: 8px;
+  }
+</style>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="../../Index.html">
-                    <img src="../../SanPham/img/logo.png">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb   -lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " href="../../Index.html">Trang chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../header/GioiThieu.html">Giới thiệu</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="../../SanPham/html/category/product.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                      Sản Phẩm
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product.html">Tất Cả Sản Phẩm</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_ban.html">Bàn Gỗ</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_ke_sach.html">Kệ Sách</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_rem_cua.html">Rèm Cửa</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_sofa.html">Ghế Sofa</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_tu_quan_ao.html">Tủ Quần Áo</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_giuong_ngu.html">Giường Ngủ</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_phong_tam.html">Phòng Tắm</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="../../SanPham/html/category/product_den_trang_tri.html">Đèn trang trí</a></li>
-                    </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="../../header/TinTuc.html">Tin tức</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="../../header/LienHe.html">Liên Hệ</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex display: block">
-                        <input class="form-control me-2 search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput" onkeyup="myFunction()">
-                        <ul id="myUL" class="list-group searchInput mt-1">
-                            <li><a href="../../SanPham/html/category/detail_item/Ban/ban2.html" class="list-group-item list-group-item-action">bàn GTY 091</a></li>
-                            <li><a href="../../SanPham/html/category/detail_item/tu_quan_ao/tu2.html" class="list-group-item list-group-item-action">Tủ áo B1241K</a></li>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../../Index.html">
+          <img src="../../SanPham/img/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 28em">
+            <li class="nav-item">
+              <a class="nav-link " href="../../Index.html">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../header/GioiThieu.html">Giới thiệu</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="../../SanPham/html/category/product.html" id="navbarDropdown"
+                role="button" data-bs-toggle="dropdown">
+                Sản Phẩm
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["all"], [])'>Tất cả sản
+                    phẩm</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick='updateUrl(["Bàn gỗ"], [])'>Bàn Gỗ</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Kệ sách'], [])">Kệ Sách</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Rèm cửa'], [])">Rèm Cửa</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Ghế sofa'], [])">Ghế
+                    Sofa</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Tủ quần áo'], [])">Tủ Quần
+                    Áo</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Giường ngủ'], [])">Giường
+                    Ngủ</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Phòng tắm'], [])">Phòng
+                    Tắm</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="updateUrl(['Đèn trang trí'], [])">Đèn
+                    trang trí</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="../../header/TinTuc.html">Tin tức</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="../../header/LienHe.html">Liên Hệ</a>
+            </li>
+          </ul>
+          <form class="d-flex display: block">
+            <input class="form-control search-input" type="text" placeholder="Tìm" aria-label="Search" id="myInput"
+              onkeyup="myFunction()">
+            <ul id="myUL" class="list-group searchInput mt-1">
+              <li><a href="../../SanPham/html/category/detail_item/Ban/ban2.html"
+                  class="list-group-item list-group-item-action">bàn GTY 091</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/tu_quan_ao/tu2.html"
+                  class="list-group-item list-group-item-action">Tủ áo B1241K</a></li>
 
-                            <li><a href="../../SanPham/html/category/detail_item/ke_sach/ke1.html" class="list-group-item list-group-item-action">Kệ sách gỗ 4 tầng 40</a></li>
-                            <li><a href="../../SanPham/html/category/detail_item/rem_cua/rem1.html" class="list-group-item list-group-item-action">Rèm Cửa 01</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/ke_sach/ke1.html"
+                  class="list-group-item list-group-item-action">Kệ sách gỗ 4 tầng 40</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/rem_cua/rem1.html"
+                  class="list-group-item list-group-item-action">Rèm Cửa 01</a></li>
 
-                            <li><a href="../../SanPham/html/category/detail_item/phong_tam/tam1.html" class="list-group-item list-group-item-action">Thanh treo giấy vệ sinh</a></li>
-                            <li><a href="../../SanPham/html/category/detail_item/sofa/sofa2.html" class="list-group-item list-group-item-action">Sofa Cafe</a></li>
-                            <li><a href="../../SanPham/html/category/detail_item/giuong_ngu/giuong4.html" class="list-group-item list-group-item-action">Giường Bellasofa B1239</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/phong_tam/tam1.html"
+                  class="list-group-item list-group-item-action">Thanh treo giấy vệ sinh</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/sofa/sofa2.html"
+                  class="list-group-item list-group-item-action">Sofa Cafe</a></li>
+              <li><a href="../../SanPham/html/category/detail_item/giuong_ngu/giuong4.html"
+                  class="list-group-item list-group-item-action">Giường Bellasofa B1239</a></li>
 
-                        </ul>
+            </ul>
 
-                        <button class="btn btn-primary search-btn" type="button"><span class="ti-search"></span></button>
-                    </form>
+            <button class="btn btn-primary search-btn" type="button" onclick="redirectToProductPage()"><span
+                class="ti-search"></span></button>
+          </form>
 
-                    <div class="icon-user">
-                        <li class="nav-item dropdown">
-                            <a class="fas fa-user nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="../../SanPham/html/Dangnhap.html" class="dropdown-item">
-                                    Đăng Nhập</a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="../../SanPham/html/Dangky.html" class="dropdown-item">
-                                        Đăng Ký
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-
-        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <div class="container">
-
-            <div class="py-2">
-                <p class="lead">Đơn Hàng Của Tôi:</p>
-                <hr>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="table-secondary text-center ">
-                        <th scope="col">ID đơn hàng</th>
-                        <th scope="col" width="50%">Sản phẩm</th>
-                        <th scope=" col ">SL </th>
-                        <th scope="col ">Tổng tiền (VNĐ)</th>
-                        <th scope="col ">Tình trạng</th>
-                        <th scope="col ">Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="new-order ">
-
-                    </tr>
-                    <tr>
-
-                        <td>YT9812</td>
-                        <td>Rèm cửa 01, Rèm cửa 02, Rèm cửa 03, Rèm cửa 04 </td>
-                        <td>4</td>
-                        <td>3.490.000</td>
-                        <td>Đang giao hàng</td>
-                        <td>
-                            <a class="btn btn-primary " href="../../SanPham/html/category/product.html">Đặt Lại</a>
-                            <!-- <button class="btn btn-primary btn-sm edit " type="button " title="Sửa " id="show-emp " data-toggle="modal " data-target="#ModalUP "><i class="fas fa-edit "></i></button> -->
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>MD0837</td>
-                        <td>Giường ngủ FURNILAND - Jangin Christine (1m8)</td>
-                        <td>1</td>
-                        <td>12.000.000</td>
-                        <td>Đã Giao</td>
-                        <td>
-                            <a class="btn btn-primary " href="../../SanPham/html/category/product.html">Đặt Lại</a>
-                            <!-- <button class="btn btn-primary btn-sm edit " type="button " title="Sửa " id="show-emp " data-toggle="modal " data-target="#ModalUP "><i class="fas fa-edit "></i></button> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+          <div class="icon-user">
+            <li class="nav-item dropdown">
+              <a class="fas fa-user nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown"></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="../../SanPham/html/Dangnhap.html" class="dropdown-item">
+                    Đăng Nhập</a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a href="../../SanPham/html/Dangky.html" class="dropdown-item">
+                    Đăng Ký
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </div>
+          <a href="./cart.html" title="Mua hàng" class="cart">
+            <li class="fas fa-cart-shopping"><span>0</span></li>
+          </a>
         </div>
-    </main>
-    <footer>
-        <div class="success1 ">
-            <div class="container ">
-                <div class="catch1 row ">
-                    <div class="t1 col-md-4 ">
-                        <div class="select1 ">
-                            <h4 class="low1 ">GIỚI THIỆU</h4>
-                            <p>
-                                Đến với Dekor, bạn hoàn toàn yên tâm để chọn được cho mình một bộ nội thất phù hợp nhất, kết hợp đầy đủ, hài hòa các yếu tố về màu sắc, kiểu dáng, kích thước để làm cho không gian ngôi nhà bạn trở nên ấn tượng hơn!
-                            </p>
-                            <ul class="select2 ">
-                                <li><a href="# "><i class="ti-facebook "></i></a></li>
-                                <li><a href="# "><i class="ti-twitter "></i></a></li>
-                                <li><a href="# "><i class="ti-email "></i></a></li>
-                                <li><a href="# "><i class="ti-youtube "></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="t2 col-md-4 ">
-                        <h4 class="low1 ">Đường dẫn</h4>
-                        <a href="../../Index.html">
-                            <p>Trang chủ</p>
-                        </a>
-                        <a href="../../header/GioiThieu.html">
-                            <p>Giới thiệu</p>
-                        </a>
-                        <a href="../../SanPham/html/category/product.html">
-                            <p>Sản phẩm</p>
-                        </a>
-                        <a href="../../header/TinTuc.html">
-                            <p>Tin tức </p>
-                        </a>
-                        <a href="../../header/LienHe.html">
-                            <p>Liên hệ</p>
-                        </a>
-                    </div>
-                    <div class="t3 col-md-4 ">
-                        <h4 class="low1 ">Thông tin liên hệ</h4>
-                        <ulclass="info ">
-                            <li>
-                                <span><i class="ti-location-pin "></i></span>
-                                <span>Đường Số 1<br />
-                    Quận 1, Thành Phố Hồ Chí Minh<br />
-                    Việt Nam</span>
-                            </li>
-                            <li>
-                                <span><i class="ti-headphone-alt "></i></span>
-                                <p><a href="# ">+84 123 456 789</a>
-                                    <br />
-                                    <a href="# ">+84 987 654 321</a></p>
-                            </li>
-                            <li>
-                                <span><i class="ti-email"></i></span>
-                                <p><a href="# ">diachiemail@gmail.com</a></p>
-                            </li>
-                            <li>
-                                <form class="form ">
-                                    <input type="email" class="form__field " placeholder="Đăng Ký Subscribe Email" />
-                                    <button type="button " class="asd btn btn-primary ">Gửi</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container-order">
+    <!-- Thanh menu bên trái -->
+    <div class="sidebar">
+      <div class="profile">
+        <img src="../../img/avatar-mac-dinh-nam.jpg" alt="Avatar" class="avatar">
+        <div class="user-name">
+          <p></p>
         </div>
-    </footer>
-    <script src="../../SanPham/js/checkout.js"></script>
-    <script src="../../SanPham/js/account.js"></script>
-    <script src="../../SanPham/js/data_order.js"></script>
+      </div>
+      <div class="menu-items">
+        <a href="./accountInfo.html" class="menu-item"><span class="icon">👤</span> Tài Khoản Của Tôi</a>
+        <a href="#" class="menu-item active"><span class="icon">📋</span> Đơn Mua</a>
+      </div>
+    </div>
+    <!-- Phần lịch sử đơn hàng -->
+    <div class="order-history-container">
+
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-3 intro">
+          <h4>GIỚI THIỆU</h4>
+          <p>Đến với Dekor, bạn hoàn toàn yên tâm để chọn được cho mình một bộ nội thất phù hợp nhất, kết hợp đầy đủ,
+            hài hòa các yếu tố về màu sắc, kiểu dáng, kích thước để làm cho không gian ngôi nhà bạn trở nên ấn tượng
+            hơn!</p>
+          <ul>
+            <li><a href=""><i class="ti-facebook"></i></a></li>
+            <li><a href=""><i class="ti-twitter"></i></a></li>
+            <li><a href=""><i class="ti-email"></i></a></li>
+            <li><a href=""><i class="ti-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3 policy news">
+          <h4>CHÍNH SÁCH</h4>
+          <div class="news_item row"
+            style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+            <span>●</span>
+            Chính sách bảo hành
+          </div>
+          <div class="news_item row"
+            style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+            <span>●</span>
+            Chính sách bảo mật
+          </div>
+          <div class="news_item row"
+            style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+            <span>●</span>
+            Chính sách đổi trả
+          </div>
+          <div class="news_item row"
+            style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+            <span>●</span>
+            Chính sách giao hàng
+          </div>
+          <div class="news_item row"
+            style="display: inline-block; margin-right: 10px; position: relative; padding-left: 20px;">
+            <span>●</span>
+            Chính sách thanh toán
+          </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-6 col-lg-3 addr">
+          <h4>ĐỊA CHỈ LIÊN HỆ</h4>
+          <p><i class="fas fa-location-dot"></i>Đường Số 1, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+          <p class="phone_num"><i class="fas fa-phone"></i><a href="">+84 123 456 789</a></p>
+          <p>
+          <form class="form">
+            <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+            <button type="button" class="asd btn btn-primary ">Gửi</button>
+          </form>
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3 news">
+          <h4>TIN MỚI</h4>
+          <div class="news_item row">
+            <div class="col-2 news_img">
+              <img src="../../SanPham/img/news/news_1.png">
+            </div>
+            <div class="col-9 news_info">
+              <h5><a href="../../header/TinTuc1.html">Bí quyết bảo quản nội thất gỗ</a></h5>
+              <p>11/11/2022</p>
+            </div>
+          </div>
+          <div class="news_item row">
+            <div class="col-2 news_img">
+              <img src="../../SanPham/img/news/news_2.png">
+            </div>
+            <div class="col-9 news_info">
+              <h5><a href="../../header/Tintuc2.html">Kinh nghiệm mua, bảo quản nội thất</a></h5>
+              <p>11/11/2022</p>
+            </div>
+          </div>
+          <div class="news_item row">
+            <div class="col-2 news_img">
+              <img src="../../SanPham/img/news/news_3.png" alt="">
+            </div>
+            <div class="col-9 news_info">
+              <h5><a href="../../header/Tintuc3.html">Bố trí nội thất, cần tránh những gì ?</a></h5>
+              <p>11/11/2022</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../SanPham/js/data.js"></script>
+  <script src="../../SanPham/js/account.js"></script>
+  <script src="../../SanPham/js/history_order.js"></script>
+  <script src="../../SanPham/js/icon_cart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script>
+    function populateProfile() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const loggedInUser = users.find(user => user.isSignIn === 1); // Kiểm tra user đang đăng nhập
+      document.querySelector(".user-name p").innerHTML = loggedInUser.name;
+      if (loggedInUser.gender) {
+        if (loggedInUser.gender === "Nữ") {
+          document.querySelector(".avatar").src = "../../img/avatar-mac-dinh-facebook-nu.jpg";
+        }
+        if (loggedInUser.gender === "Nam") {
+          document.querySelector(".avatar").src = "../../img/avatar-mac-dinh-nam.jpg";
+        }
+      }
+    }
+    populateProfile();
+    function updateUrl(categories, brands) {
+      // Mã hóa categories và brands thành chuỗi JSON và sau đó mã hóa URL
+      const encodedCategories = (JSON.stringify(categories));
+      const encodedBrands = (JSON.stringify(brands));
+
+      // Cập nhật URL với các tham số mới
+      const url = new URL(getBasePath() + '/SanPham/html/category/product.html'); // Chuyển hướng đến trang sản phẩm
+      url.searchParams.set('categories', encodedCategories);
+      url.searchParams.set('brands', encodedBrands);
+
+      // Chuyển hướng đến URL mới
+      window.location.href = url.toString();
+    }
+
+
+
+  </script>
 
 </body>
 

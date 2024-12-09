@@ -1,23 +1,3 @@
-let accountusers = [{
-    email: "user1@gmail.com",
-    sdt: "0984253741",
-    diachi: "Ly thai to- quan 5",
-    name: "user1",
-    password: "123456",
-},
-{
-    email: "user2@gmail.com",
-    sdt: "0984253741",
-    diachi: "Ly thai to- quan 5",
-    name: "user2",
-    password: "123456",
-}
-]
-var account = localStorage.getItem('accountusers');
-if (account == null) {
-    localStorage.setItem('accountusers', JSON.stringify(accountusers));
-}
-
 function Validator(options) {
     function getParent(element, selector) {
         while (element.parentElement) {
@@ -30,16 +10,15 @@ function Validator(options) {
 
     var selectorRules = {};
 
-    // Hàm thực hiện validate
     function validate(inputElement, rule) {
-        var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
+        var errorElement = getParent(
+            inputElement,
+            options.formGroupSelector
+        ).querySelector(options.errorSelector);
         var errorMessage;
 
-        // Lấy ra các rules của selector
         var rules = selectorRules[rule.selector];
 
-        // Lặp qua từng rule & kiểm tra
-        // Nếu có lỗi thì dừng việc kiểm
         for (var i = 0; i < rules.length; ++i) {
             errorMessage = rules[i](inputElement.value);
             if (errorMessage) break;
@@ -48,23 +27,20 @@ function Validator(options) {
         if (errorMessage) {
             errorElement.innerText = errorMessage;
         } else {
-            errorElement.innerText = '';
+            errorElement.innerText = "";
         }
 
         return !errorMessage;
     }
 
-    // Lấy element của form cần validate
     var formElement = document.querySelector(options.form);
     if (formElement) {
-        // Khi submit form
-        formElement.onsubmit = function(e) {
+        formElement.onsubmit = function (e) {
             e.preventDefault();
 
             var isFormValid = true;
 
-            // Lặp qua từng rules và validate
-            options.rules.forEach(function(rule) {
+            options.rules.forEach(function (rule) {
                 var inputElement = formElement.querySelector(rule.selector);
                 var isValid = validate(inputElement, rule);
                 if (!isValid) {
@@ -72,13 +48,12 @@ function Validator(options) {
                 }
             });
 
-            if (isFormValid) { formElement.submit(); }
-        }
+            if (isFormValid) {
+                if (options.onSubmit) options.onSubmit(isFormValid);
+            }
+        };
 
-        // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ...)
-        options.rules.forEach(function(rule) {
-
-            // Lưu lại các rules cho mỗi input
+        options.rules.forEach(function (rule) {
             if (Array.isArray(selectorRules[rule.selector])) {
                 selectorRules[rule.selector].push(rule.test);
             } else {
@@ -87,213 +62,447 @@ function Validator(options) {
 
             var inputElements = formElement.querySelectorAll(rule.selector);
 
-            Array.from(inputElements).forEach(function(inputElement) {
-                // Xử lý trường hợp blur khỏi input
-                inputElement.onblur = function() {
+            Array.from(inputElements).forEach(function (inputElement) {
+                inputElement.onblur = function () {
                     validate(inputElement, rule);
-                }
+                };
 
-                // Xử lý mỗi khi người dùng nhập vào input
-                inputElement.oninput = function() {
-                    var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
-                    errorElement.innerText = '';
-                }
+                inputElement.oninput = function () {
+                    var errorElement = getParent(
+                        inputElement,
+                        options.formGroupSelector
+                    ).querySelector(options.errorSelector);
+                    errorElement.innerText = "";
+                };
             });
         });
     }
-
 }
 
+new Validator({
+    form: "#register", 
+    formGroupSelector: ".input-form", 
+    errorSelector: ".form-message",
+    rules: [
+        {
+            selector: "#email",
+            test: function (value) {
+                if (!value) return "Email không được để trống";
+                if (!/^[a-zA-Z0-9]+@gmail\.com$/.test(value))
+                    return "Email không hợp lệ";
 
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+                const existingEmail = users.find(user => user.email === value);
+                if (existingEmail) return "Email này đã được đăng ký!";
+            },
+        },
+        {
+            selector: "#SDT",
+            test: function (value) {
+                if (!value) return "SĐT không được để trống";
+                if (!/^\d{10}$/.test(value)) return "SĐT phải có 10 chữ số";
+            },
+        },
+        {
+            selector: "#username",
+            test: function (value) {
+                if (!value) return "Tên Người Dùng không được để trống";
+                if (!/^[a-zA-Z0-9_]{8,16}$/.test(value)) 
+                    return "Tên Người Dùng phải từ 8-16 ký tự và không chứa ký tự đặc biệt";
 
-// Định nghĩa rules
-// Nguyên tắc của các rules:
-// 1. Khi có lỗi => Trả ra message lỗi
-// 2. Khi hợp lệ => Không trả ra cái gì cả (undefined)
-Validator.isRequired = function(selector, message) {
-    return {
-        selector: selector,
-        test: function(value) {
-            return value ? undefined : message || 'Vui lòng nhập '
-        }
-    };
-}
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+                const existingUsername = users.find(user => user.username === value);
+                if (existingUsername) return "Tên người dùng này đã tồn tại!";
+            },
+        },
+        {
+            selector: "#name",
+            test: function (value) {
+                if (!value) return "Tên không được để trống";
+            },
+        },
+        {
+            selector: "#password",
+            test: function (value) {
+                if (!value) return "Mật khẩu không được để trống";
+                if (value.length < 6) return "Mật khẩu phải có ít nhất 6 ký tự";
+            },
+        },
+        {
+            selector: "#confirmpassword",
+            test: function (value) {
+                var password = document.querySelector("#password").value;
+                if (value !== password) return "Mật khẩu xác nhận không khớp";
+            },
+        },
+    ],
 
-Validator.isEmail = function(selector, message) {
-    return {
-        selector: selector,
-        test: function(value) {
-            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            return regex.test(value) ? undefined : message || 'Không Phải Là Email';
-        }
-    };
-}
-
-Validator.minLength = function(selector, min, message) {
-    return {
-        selector: selector,
-        test: function(value) {
-            return value.length >= min ? undefined : message || `Vui lòng nhập tối thiểu ${min} kí tự`;
-        }
-    };
-}
-Validator.isConfirmed = function(selector, getConfirmValue, message) {
-    return {
-        selector: selector,
-        test: function(value) {
-            return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
+    onSubmit: function (isValid) {
+        if (isValid) {
+            addAccount();
         }
     }
-}
+});
 
-function getInfor() {
 
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var sdt = document.getElementById('SDT').value;
-    var diachi = document.getElementById('Adress').value;
-    var name = document.getElementById('name').value;
-    var tmp = {
-        email: email,
-        sdt: sdt,
-        password: password,
-        diachi: diachi,
+function addAccount() {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("SDT").value;
+    const username = document.getElementById("username").value;
+    const name = document.getElementById("name").value;
+    const password = document.getElementById("password").value;
+
+    const newUser = {
+        id: users.length + 1,
+        username: username,
         name: name,
+        address: "",
+        phone: phone,
+        account: email,
+        password: password,
+        gender:"",
+        cart: [],
+        isSignIn: 0,
+        banned: 0,
     };
-    return tmp;
-}
 
-function addAcount() {
-    let account = getInfor();
-    accountusers.push(account);
-    localStorage.setItem("accountusers", JSON.stringify(accountusers));
+    users.push(newUser);
+
+    localStorage.setItem("users", JSON.stringify(users));
+    window.location.href = "../../SanPham/html/Dangnhap.html";
 }
 
 function checkSignIn() {
-    var email = document.getElementById('email1').value;
-    var password = document.getElementById('password1').value;
-    var errorMessage = document.getElementById('form-message');
-    var accountuser = localStorage.getItem('accountusers');
-    accountuser = JSON.parse(accountuser);
+    var username = document.getElementById("username1").value.trim();
+    var password = document.getElementById("password1").value.trim();
 
-    // if (password && email) {
-    //     for (let i = 0; i < admins.length; i++)
-    //         if (email === admins[i].email) {
-    //             if (password === admins[i].password) {
-    //                 localStorage.setItem('issignin', 1);
-    //                 localStorage.setItem('email', admins[i].email);
-    //                 localStorage.setItem('password', admins[i].password);
-    //                 // document.getElementById('signIn').action = "./html/admin/admin.html";
-    //                 // this.submit();
-    //             }
-    //         }
-    // }
-    Object.values(accountuser).map(item => {
-        console.log(email)
-            if (email === item.email) {
-                if (password === item.password) {
-                    localStorage.setItem('issignin', 1);
-                    localStorage.setItem('email', item.email);
-                    localStorage.setItem('username', item.name);
-                    localStorage.setItem('password', item.password);
-                    document.getElementById('signIn').action = "../../Index.html";
-                    this.submit();
-                }
-            }
-            else errorMessage.innerText = "Sai Mật Khẩu";
+    var users = JSON.parse(localStorage.getItem("users")) || [];
 
+    var user = users.find(function (user) {
+        return user.username === username && user.password === password;
+    });
+
+    if (user) {
+        if (user.banned === 1) {
+            document.getElementById("password-message").innerText =
+                "Tài khoản của bạn đã bị cấm, vui lòng liên hệ quản trị viên!";
+            return false;
         }
-    )
 
-    return false;
-}
-function getBasePath() {
-    const pathArray = window.location.pathname.split('/');
-    const facilityIndex = pathArray.indexOf('Facility');  // Tìm vị trí của 'Facility'
+        users.forEach(u => (u.isSignIn = u.username === username ? 1 : 0));
 
-    if (facilityIndex !== -1) {
-        // Tạo basePath tới 'SanPham/html' từ 'Facility'
-        const basePath = pathArray.slice(0, facilityIndex + 1).join('/') + '/SanPham/html/';
-        return window.location.origin + basePath;
+        localStorage.setItem("users", JSON.stringify(users));
+
+        window.location.href = "../../Index.html";
     } else {
-        // Trường hợp không tìm thấy 'Facility'
-        console.warn("Không tìm thấy thư mục 'Facility' trong URL.");
-        const fallbackPath = '/SanPham/html/';
-        return window.location.origin + fallbackPath;
+        document.getElementById("password-message").innerText =
+            "Tên tài khoản hoặc mật khẩu không chính xác!";
+        return false;
     }
 }
 
 
-// Sử dụng getBasePath() để tạo các href động
+function getBasePath() {
+    const pathArray = window.location.pathname.split("/");
+    const facilityIndex = pathArray.indexOf("Facility");
+
+    if (facilityIndex !== -1) {
+        const basePath = pathArray.slice(0, facilityIndex + 1).join("/");
+        return window.location.origin + basePath;
+    } else {
+        console.warn("Không tìm thấy thư mục 'Facility' trong URL.");
+        return window.location.origin;
+    }
+}
+
 function afterSignIn() {
-    var signin = localStorage.getItem('issignin');
-    var username = localStorage.getItem('username') ?? 'error';
     let headeruser = document.querySelector(".icon-user");
-    
-    if (signin == 1) {
-        headeruser.innerHTML = ' ';
+
+    let users = JSON.parse(localStorage.getItem("users"));
+
+    let loggedInUser = users.find((user) => user.isSignIn === 1);
+
+    if (loggedInUser) {
+        headeruser.innerHTML = " ";
         let basePath = getBasePath();
-        
+
         headeruser.innerHTML += `
             <li class="nav-item dropdown">
                 <a class="fas fa-user nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"></a>
                 <ul class="dropdown-menu">
-                    <a href="${basePath}cart.html" class="dropdown-item">
-                        <li>Giỏ Hàng</li>
+                    <a href="${basePath}/SanPham/html/accountInfo.html" class="dropdown-item">
+                        <li>Tài khoản</li>
                     </a>
-                    <a href="${basePath}user_order.html" class="dropdown-item">
-                        <li>Đơn Hàng</li>
+                    <a href="${basePath}/SanPham/html/user_order.html" class="dropdown-item">
+                        <li>Đơn mua</li>
                     </a>
                     <a onclick="logout()" class="dropdown-item">
-                        <li>logout</li>
+                        <li>Đăng xuất</li>
                     </a>
                 </ul>
             </li>
         `;
-        headeruser.querySelector('li > a').innerText = username;
+
+        headeruser.querySelector("li > a").innerText = loggedInUser.name;
     }
 }
+
 afterSignIn();
 
 function logout() {
-    var signin = localStorage.getItem('issignin');
-    if (signin) {
-        localStorage.removeItem("issignin");
+    let users = JSON.parse(localStorage.getItem("users"));
+
+    let loggedInUser = users.find((user) => user.isSignIn === 1);
+
+    if (loggedInUser) {
+        loggedInUser.isSignIn = 0;
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.removeItem("currentUser");
         location.reload();
     }
 }
 
-function showUserInfor() {
-    let signin = localStorage.getItem('issignin');
-    let email = localStorage.getItem('email');
-    var accountuser = localStorage.getItem('accountusers');
-    accountuser = JSON.parse(accountuser);
-    let headeruser = document.querySelector(".user-infor");
-    if (signin) {
-        Object.values(accountuser).map(item => {
-            if (email === item.email) {
-                headeruser.innerHTML = ' ';
+const urlTinhThanh = "https://esgoo.net/api-tinhthanh/1/0.htm";
+const urlQuanHuyen = "https://esgoo.net/api-tinhthanh/2/";
+const urlPhuongXa = "https://esgoo.net/api-tinhthanh/3/";
 
-                headeruser.innerHTML += `
-        <div class=" ">
-            <label for="ten ">Họ tên</label>
-            <input type="text " class="form-control " name="ten " id="ten " value="${item.name} " readonly=" ">
-        </div>
-        <div class=" ">
-            <label for="email ">Email</label>
-            <input type="text " class="form-control " name="email " id="email " value="${item.email} " readonly=" ">
-        </div>
-        <div class=" ">
-            <label for="SĐT ">SĐT</label>
-            <input type="text " class="form-control " name="SĐT " id="SĐT " value="${item.sdt} " readonly=" ">
-        </div>
-        <div class=" ">
-            <label for="diachi ">Địa Chỉ Giao Hàng</label>
-            <input type="text " class="form-control " name="diachi " id="diachi " value="${item.diachi} " >
-        </div>
-`;
-            }
-        })
+let selectedTinhThanh = "";
+let selectedQuanHuyen = "";
+let selectedPhuongXa = "";
+
+const headeruser = document.querySelector(".user-infor");
+
+function showUserInfor() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    if (!headeruser) {
+        console.error("Không tìm thấy container để hiển thị thông tin người dùng!");
+        return;
+    }
+
+    const currentUser = users.find((user) => user.isSignIn === 1);
+    if (currentUser) {
+        headeruser.innerHTML = "";
+
+        const addressParts = currentUser.address.split(",");
+        let specificAddress = "";
+        let remainingAddress = "";
+
+        if (addressParts.length > 3) {
+            specificAddress = addressParts.slice(0, addressParts.length - 3).join(",").trim();
+            remainingAddress = addressParts.slice(-3).join(",").trim();
+        } else {
+            specificAddress = addressParts[0]?.trim() || "";
+            remainingAddress = addressParts.slice(1).join(",").trim();
+        }
+
+        headeruser.innerHTML = `
+             <div class="form-container">
+                 <div class="form-group">
+                     <label for="ten">Họ tên</label>
+                     <input type="text" class="form-control" name="ten" id="ten" value="${currentUser.name}" readonly>
+                 </div>
+                 <div class="form-group">
+                     <label for="email">Email</label>
+                     <input type="text" class="form-control" name="email" id="email" value="${currentUser.account}" readonly>
+                 </div>
+                 <div class="form-group">
+                     <label for="sdt">SĐT</label>
+                     <input type="text" class="form-control" name="sdt" id="sdt" value="${currentUser.phone}" readonly>
+                 </div>
+                 <div class="form-group">
+                     <label for="diachi">Địa chỉ</label>
+                     <div class="input-wrapper">
+                         <input type="text" class="form-control" name="diachi" id="diachi" value="${remainingAddress}">
+                         <div id="addressDropdown" class="dropdown"></div>
+                         <div id="districtDropdown" class="dropdown"></div>
+                         <div id="wardDropdown" class="dropdown"></div>
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="diachicuthe">Địa chỉ cụ thể</label>
+                     <input type="text" class="form-control" name="diachicuthe" id="diachicuthe" value="${specificAddress}">
+                 </div>
+             </div>
+             `;
+
+        setupAddressDropdown("diachi");
+    } else {
+        console.error("Không tìm thấy người dùng hiện tại!");
     }
 }
-showUserInfor();
+
+function placeOrder() {
+    let users = JSON.parse(localStorage.getItem("users"));
+
+    let signedInUser = users.find(user => user.isSignIn === 1);
+
+    if (signedInUser) {
+        const payMethod = document.querySelector('input[name="httt_ma"]:checked')?.value;
+
+        if (!payMethod) {
+            console.log("Vui lòng chọn phương thức thanh toán.");
+            return;
+        }
+
+        let paymentDetails = {};
+
+        if (payMethod === "Chuyển khoản") {
+            paymentDetails.bankName = document.getElementById("bankName").value;
+            paymentDetails.bankAccount = document.getElementById("bankAccount").value;
+            paymentDetails.bankTransferDate = document.getElementById("bankTransferDate").value;
+        } else if (payMethod === "Thanh toán qua thẻ") {
+            paymentDetails.cardNumber = document.getElementById("cardNumber").value;
+            paymentDetails.expiryDate = document.getElementById("expiryDate").value;
+            paymentDetails.cvv = document.getElementById("cvv").value;
+        }
+
+        const specificAddress = document.getElementById("diachicuthe").value;
+        const remainingAddress = document.getElementById("diachi").value;
+        const fullAddress = `${specificAddress}, ${remainingAddress}`;
+
+        if (!signedInUser.address || signedInUser.address.trim() === "") {
+            const confirmSetDefault = confirm("Địa chỉ của tài khoản bạn đang để trống. Bạn có muốn sử dụng địa chỉ này làm mặc định?");
+
+            if (confirmSetDefault) {
+                signedInUser.address = fullAddress;
+
+                localStorage.setItem("users", JSON.stringify(users));
+            }
+        }
+
+        const order = {
+            id: orders.length+1,
+            fullname: signedInUser.name,
+            email: signedInUser.account,
+            phone: signedInUser.phone,
+            status: "Chưa xử lý",
+            pay_method: payMethod,
+            address: fullAddress,
+            order_date: new Date().toISOString().split('T')[0],
+            delivery_date: "",
+            products: signedInUser.cart.map(item => ({
+                id: item.product.id,
+                image: item.product.image,
+                title: item.product.title,
+                price: item.product.price,
+                amount: item.product.amount,
+                category: item.product.category,
+                status: item.product.status,
+                code: item.product.code,
+                Suppliers: item.product.Suppliers,
+                description: item.product.description,
+                quantity: item.quantity
+            })),
+            userID: signedInUser.id
+        };
+
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+        orders.push(order);
+
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        alert("Đặt hàng thành công!");
+        resetCart();
+        window.location.href=getBasePath()+"/SanPham/html/thanks.html"
+    } else {
+        console.log("Không có người dùng đăng nhập.");
+    }
+}
+
+
+function setupAddressDropdown(idAdress) {
+    const diachiInput = document.getElementById(idAdress);
+    const addressDropdown = document.getElementById("addressDropdown");
+    const districtDropdown = document.getElementById("districtDropdown");
+    const wardDropdown = document.getElementById("wardDropdown");
+
+    diachiInput.addEventListener("click", function () {
+        addressDropdown.style.display = "block";
+        addressDropdown.innerHTML = ""; // Reset dropdown
+        fetch(urlTinhThanh)
+            .then((response) => response.json())
+            .then((tinhThanhData) => {
+                tinhThanhData.data.forEach((item) => {
+                    const div = document.createElement("div");
+                    div.textContent = item.full_name;
+                    div.classList.add("dropdown-item");
+                    div.addEventListener("click", function () {
+                        selectedTinhThanh = item.full_name;
+                        diachiInput.value = selectedTinhThanh;
+                        addressDropdown.style.display = "none";
+                        loadQuanHuyen(item.id);
+                    });
+                    addressDropdown.appendChild(div);
+                });
+            })
+            .catch((error) =>
+                console.error("Lỗi khi lấy dữ liệu tỉnh/thành:", error)
+            );
+    });
+
+
+    function loadQuanHuyen(tinhThanhId) {
+        fetch(`${urlQuanHuyen}${tinhThanhId}.htm`)
+            .then((response) => response.json())
+            .then((quanHuyenData) => {
+                districtDropdown.style.display = "block";
+                districtDropdown.innerHTML = "";
+                quanHuyenData.data.forEach((item) => {
+                    const div = document.createElement("div");
+                    div.textContent = item.full_name;
+                    div.classList.add("dropdown-item");
+                    div.addEventListener("click", function () {
+                        selectedQuanHuyen = item.full_name;
+                        diachiInput.value = `${selectedQuanHuyen}, ${selectedTinhThanh}`;
+                        districtDropdown.style.display = "none";
+                        loadPhuongXa(item.id);
+                    });
+                    districtDropdown.appendChild(div);
+                });
+            })
+            .catch((error) =>
+                console.error("Lỗi khi lấy dữ liệu quận/huyện:", error)
+            );
+    }
+
+    function loadPhuongXa(quanHuyenId) {
+        fetch(`${urlPhuongXa}${quanHuyenId}.htm`)
+            .then((response) => response.json())
+            .then((phuongXaData) => {
+                wardDropdown.style.display = "block";
+                wardDropdown.innerHTML = "";
+                phuongXaData.data.forEach((item) => {
+                    const div = document.createElement("div");
+                    div.textContent = item.full_name;
+                    div.classList.add("dropdown-item");
+                    div.addEventListener("click", function () {
+                        selectedPhuongXa = item.full_name;
+                        diachiInput.value = `${selectedPhuongXa}, ${selectedQuanHuyen}, ${selectedTinhThanh}`;
+                        wardDropdown.style.display = "none";
+                    });
+                    wardDropdown.appendChild(div);
+                });
+            })
+            .catch((error) => console.error("Lỗi khi lấy dữ liệu phường/xã:", error));
+    }
+
+    document.addEventListener("click", function (event) {
+        if (
+            !diachiInput.contains(event.target) &&
+            !addressDropdown.contains(event.target)
+        ) {
+            addressDropdown.style.display = "none";
+        }
+        if (!districtDropdown.contains(event.target)) {
+            districtDropdown.style.display = "none";
+        }
+        if (!wardDropdown.contains(event.target)) {
+            wardDropdown.style.display = "none";
+        }
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", showUserInfor);

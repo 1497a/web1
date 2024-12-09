@@ -164,11 +164,15 @@ h2 {
 }
 
 .category_left_menu ul {
-    display: none;
+    display: block;
 }
 
 .category_left_menu.block ul {
     display: block;
+}
+
+.category_left_menu ul li{
+    margin: 4px 0 4px 0;
 }
 
 .category_left_menu li a:hover {
@@ -276,6 +280,18 @@ h2 {
     opacity: 0.7;
 }
 
+/* Thiết lập hiệu ứng ban đầu */
+.lazyload_item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng khi hover */
+.lazyload_item:hover {
+    transform: translateY(-6px); /* Nhích lên trên 10px */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Thêm bóng mờ */
+}
+
+
 .lazyload_item:hover .popup_item {
     display: block;
 }
@@ -327,11 +343,6 @@ h2 {
 }
 
 .pagination a {
-    padding: 9px 0 0 0;
-    margin: 0;
-    width: 45px;
-    height: 45px;
-    border: 2px solid #dddddd;
 }
 
 .pagination li {
@@ -354,7 +365,6 @@ h2 {
 .pagination .active a {
     z-index: 0;
     background-color: #474747;
-    border: 2px solid #474747;
 }
 
 
@@ -378,12 +388,12 @@ h2 {
     padding-right: 5px;
 }
 
-.addr ul {
+.intro ul {
     display: flex;
     padding: 0;
 }
 
-.addr li a {
+.intro li a {
     width: 40px;
     height: 40px;
     background: #222;
@@ -396,16 +406,35 @@ h2 {
     color: #fff;
 }
 
-.addr li a:hover {
+.intro li a:hover {
     background-color: #fff;
     color: #000;
 }
+
+    .policy .news_item {
+        cursor: pointer; /* Con trỏ chỉ tay khi hover */
+        transition: color 0.3s ease, transform 0.3s ease; /* Hiệu ứng mượt */
+    }
+
+    .policy .news_item:hover {
+        color: #FFD700; /* Đổi màu chữ khi hover */
+        transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    }
+
+    .policy .news_item:hover span {
+        color: #FFD700; /* Đổi màu biểu tượng khi hover */
+    }
+
+    .policy .news_item span{
+        padding: 0;
+    }
+
 
 .news .col-2 {
     min-width: 60px;
 }
 
-.news_item {
+.news .news_item {
     padding-left: 20px;
     align-items: center;
     text-align: left;
@@ -438,7 +467,7 @@ h2 {
 
 .news_info a:hover,
 .phone_num a:hover {
-    color: #e97777;
+    color: #FFD700;
 }
 
 .bold {

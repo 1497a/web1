@@ -32,7 +32,7 @@
                             </div>
                             <div>
                                 <div class="user_name">
-                                    <b>Admin</b>
+                                    <a href="./infoAdmin.html" style="color:aliceblue;"></a>
                                 </div>
                                 <div class="user_designation">
                                     <p>Chào mừng bạn trở lại</p>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="sign_out">
-                <a href="../../html/Dangnhap.html" onclick="logout()"><i class="fas fa-right-from-bracket"></i></a>
+                <a href="../../html/Dangnhap.html" onclick="logoutAdmin()"><i class="fas fa-right-from-bracket"></i></a>
             </div>
         </div>
         <div class="sidebar">
@@ -68,7 +68,7 @@
                 </div>
                 <div>
                     <div class="user_name">
-                        <b>Admin</b>
+                        <a href="./infoAdmin.html" style="color:aliceblue;"></a>
                     </div>
                     <div class="user_designation">
                         <p>Chào mừng bạn trở lại</p>
@@ -102,9 +102,24 @@
         <div class="row main_frame box_card box_shadow">
             <div class="element_btn">
                 <div>
-                    <a href="../../html/admin/form_add_product.html" class="addnew_btn"><i class="fas fa-plus"></i>Tạo mới sản phẩm</a>
+                    <a href="../../html/admin/form_add_product.html" class="addnew_button"><i class="fas fa-plus"></i>Thêm mới sản phẩm</a>
                 </div>
             </div>
+            <div id="statusFilter" class="filter-status tab-content active">
+                <label class="filter-label" for="category">Chọn sản phẩm:</label>
+                <select class="filter-input" id="category">
+                    <option value="Tất cả sản phẩm">Tất cả sản phẩm</option>
+                    <option value="Bàn gỗ">Bàn gỗ</option>
+                    <option value="Kệ sách">Kệ sách</option>
+                    <option value="Rèm cửa">Rèm cửa</option>
+                    <option value="Ghế sofa">Ghế sofa</option>
+                    <option value="Tủ quần áo">Tủ quần áo</option>
+                    <option value="Giường ngủ">Giường ngủ</option>
+                    <option value="Phòng tắm">Phòng tắm</option>
+                    <option value="Đèn trang trí">Đèn trang trí</option>
+                </select>
+                <button onclick="filterProductsByCategory()" class="filter-button">Lọc</button>
+            </div> 
             <div class="table-responsive-lg">
                 <table class="table table-bordered">
                     <thead>
@@ -157,10 +172,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="../../bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/data.js"></script>
+    <script src="../../js/editProduct.js"></script>
+    <script src="../../js/pagination.js"></script>
     <script src="../../js/admin.js"></script>
     <script src="../../js/data_product.js"></script>
     <script src="../../js/account.js"></script>
-
+    <script src="../../js/accountAdmin.js"></script>
+    <script src="../../js/checkSignInAdmin.js"></script>
 </body>
 
 </html>

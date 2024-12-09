@@ -1,61 +1,78 @@
 function displayCheckOut() {
-    let cartItems = localStorage.getItem("productsInCart");
-    cartItems = JSON.parse(cartItems);
-    let productContainer = document.querySelector(".input-checkout");
-    let cartCost = localStorage.getItem('totalCost');
-    let productTotal = document.querySelector(".total");
-    if (cartItems && productContainer) {
-        productContainer.innerHTML = ' ';
-        Object.values(cartItems).map(item => {
-            productContainer.innerHTML += `
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(user => user.isSignIn === 1);
+
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+
+    const cart = currentUser.cart || []; 
+    const productContainer = document.querySelector(".input-checkout");
+    const totalCost = cart.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
+
+    if (!productContainer) {
+        console.error("Không tìm thấy container để hiển thị sản phẩm trong thanh toán!");
+        return;
+    }
+
+    productContainer.innerHTML = "";
+
+    cart.forEach(item => {
+        const formattedPrice = item.product.price.toLocaleString("vi-VN");
+        const formattedTotal = (item.quantity * item.product.price).toLocaleString("vi-VN");
+        productContainer.innerHTML += `
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
-                    <h6 >${item.title}</h6>  
-                    <small class="text-muted">${item.price} Đ x ${item.inCart}</small>
+                    <h6>${item.product.title}</h6>
+                    <small class="text-muted">${formattedPrice} Đ x ${item.quantity}</small>
                 </div>
-                <span class="text-muted">${item.inCart*item.price} Đ</span>
-               
-                
+                <span class="text-muted">${formattedTotal} Đ</span>
             </li>
-            </li>
-    `
+        `;
+    });
 
-
-        });
-    }
-    if (cartCost) {
-        productContainer.innerHTML += `<li class="list-group-item d-flex justify-content-between lh-condensed"><span>Tổng thành tiền: </span>
-    <strong>${cartCost} Đ</strong></li>`
-    } else { productContainer.innerHTML += `<li class="list-group-item d-flex justify-content-between lh-condensed"><span>Tổng thành tiền: </span>
-    <strong>0 Đ</strong></li>` }
-
+    const formattedTotalCost = totalCost.toLocaleString("vi-VN");
+    productContainer.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between">
+            <span>Tổng thành tiền:</span>
+            <strong>${formattedTotalCost} Đ</strong>
+        </li>
+    `;
 }
+
 
 function onLoadCartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(user => user.isSignIn === 1);
 
-    if (productNumbers) {
-        document.querySelector('.cart1 span').textContent = productNumbers;
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+
+    const cart = currentUser.cart || [];
+    const productNumbers = cart.reduce((total, item) => total + item.quantity, 0);
+
+    const cartIndicator = document.querySelector('.cart1 span');
+    if (cartIndicator) {
+        cartIndicator.textContent = productNumbers;
     }
 }
 
+
 function resetCart() {
-    var newOrderProduct = localStorage.getItem('productsInCart');
-    var newOrderCost = localStorage.getItem('totalCost');
-    var newOrderNumber = localStorage.getItem('cartNumbers');
-    localStorage.setItem('newOrderProduct', newOrderProduct);
-    localStorage.setItem('newOrderCost', newOrderCost);
-    localStorage.setItem('newOrderNumber', newOrderNumber);
-    localStorage.removeItem('productsInCart');
-    localStorage.removeItem('totalCost');
-    localStorage.removeItem('cartNumbers');
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(user => user.isSignIn === 1);
+
+    if (!currentUser) {
+        console.error("Không tìm thấy người dùng hiện tại!");
+        return;
+    }
+
+    currentUser.cart = [];
+    localStorage.setItem("users", JSON.stringify(users));
 }
 
-function createIdOrder() {
-
-    var a = ((Math.random().toString(36).slice(6)).toUpperCase());
-
-    localStorage.setItem('IdOrder', a);
-}
 onLoadCartNumbers()
 displayCheckOut();
